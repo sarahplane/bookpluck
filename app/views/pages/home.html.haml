@@ -1,17 +1,26 @@
-%div.section.dark
-  %div.container
-    %h1
-      = "BookPluck"
-    %div.topright
-      = link_to "about", '#about'
-      |
-      = link_to "features", '#features'
 %div.section.light
   %div.container
-    %h1#about
-      = "About"
+    %div.inline
+      = link_to root_path do
+        = image_tag("/assets/logo.png")
+    %div.topright
+      = link_to "about", '#about', class: "alt"
+      |
+      = link_to "features", '#features', class: "alt"
+    %h2.alt-color.margin-top.more
+      = "extract marginalia, optimize learning"
+    %h3.alt-color
+      = "BookPluck helps you discover the hidden connections between texts"
 %div.section
   %div.container
-    %h1#features
+    %div.inline.valign.margin-top
+      %img(src="/assets/icon-placeholder.png")
+    %h1.inline.valign#about
+      = "About"
+%div.section.theme
+  %div.container
+    %div.inline.valign.margin-top
+      %img(src="/assets/icon-placeholder.png")
+    %h1.inline.valign.alt-color#features
       = "Features"
 %div.section.dark

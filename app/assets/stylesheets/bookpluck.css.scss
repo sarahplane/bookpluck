@@ -1,26 +1,69 @@
-$home-background-color: gray;
-$home-background-color-alt1: lightgray;
+$main-color: #333743;
+$main-color-alt1: #404452;
+$alt-text: #fff;
+$theme-color: #ffa500;
 
 html, body {
   padding: 0;
   margin: 0;
+  font: 14px 'Lora', serif;
+  color: $main-color;
+}
+
+a {
+  text-decoration: none;
+
+  &.alt {
+    color: #fff;
+  }
 }
 
 h1 {
   font-size: 28px;
-  margin-top: 0;
-  padding-top: .5em;
+  margin-top: 1em;
+  padding-top: 0;
+  font-weight: bold;
 }
+
+h2 {
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Roboto Condensed';
+  font-weight: normal;
+  margin: .5em;
+}
+
+h3 {
+  font-size: 18px;
+  text-align: center;
+  font-style: italic;
+  font-family: 'Roboto';
+  margin: .5em;
+}
+
+.theme-color{
+  color: $main-color;
+}
+
+.alt-color {
+  color: $alt-text;
+}
+
 .section {
   margin: 0;
   width: 100%;
   height: 35em;
 
   &.dark {
-    background-color: $home-background-color;
+    background-color: $main-color;
   }
   &.light {
-    background-color: $home-background-color-alt1;
+    background-color: $main-color-alt1;
+  }
+
+  &.theme {
+    background-color: $theme-color;
   }
 }
 
@@ -38,8 +81,20 @@ h1 {
 }
 
 .topright {
-    position: absolute;
-    top: 1em;
-    right: 2em;
-    font-size: 18px;
+  position: absolute;
+  top: 1em;
+  right: 2em;
+  font-size: 18px;
+}
+
+.margin-top {
+  margin-top: 1em;
+
+  .more {
+    margin-top: 3em;
+  }
+}
+
+.valign {
+  vertical-align: middle;
 }
