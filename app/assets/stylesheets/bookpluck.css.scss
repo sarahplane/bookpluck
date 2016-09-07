@@ -2,12 +2,17 @@ $main-color: #333743;
 $main-color-alt1: #404452;
 $alt-text: #fff;
 $theme-color: #ffa500;
+$notecard-width: 400px;
 
 html, body {
   padding: 0;
   margin: 0;
   font: 20px 'Lora', serif;
   color: $main-color;
+
+  &.main {
+    background-color: $main-color
+  }
 }
 
 a {
@@ -42,7 +47,7 @@ h3 {
   margin: .5em;
 }
 
-.theme-color{
+.theme-color {
   color: $main-color;
 }
 
@@ -84,6 +89,14 @@ h3 {
 
   &.more {
     margin-top: 2em;
+  }
+}
+
+.margin-bottom {
+  margin-bottom: 1em;
+
+  &.more {
+    margin-bottom: 2em;
   }
 }
 
@@ -130,4 +143,34 @@ h3 {
   &.tall {
     min-height: 33em;
   }
+}
+
+/* NOTECARDS */
+
+.notecard {
+  border: solid 1px $theme-color;
+  width: $notecard-width;
+  display: inline-block;
+}
+
+.notecard-title {
+  width: $notecard-width;
+  background-color: $main-color-alt1;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.notecard-quote {
+  width: $notecard-width;
+  background-color: #fff;
+  height: 200px;
+  border-top: solid 1px $theme-color;
+  border-bottom: solid 1px $theme-color;
+}
+
+
+.notecard-note {
+  width: $notecard-width;
+  background-color: $main-color-alt1;
+  height: 200px;
 }

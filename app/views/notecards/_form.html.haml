@@ -1,0 +1,13 @@
+= form_for(notecard) do |f|
+
+  %div.body-text
+    = f.text_field :title, placeholder: 'title'
+
+  %div.body-text
+    = f.text_area :quote, placeholder: 'quote'
+
+  %div.body-text
+    = f.text_area :note, placeholder: 'note'
+
+  %div.body-text
+    = f.submit 'create'

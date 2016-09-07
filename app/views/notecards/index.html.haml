@@ -1,3 +1,21 @@
+%body.main
+
 %div.container
-  %h1
+  %h1.alt-color
     = "Notecard List"
+
+  %div
+    - @notecards.each do |notecard|
+      %div.notecard.margin-bottom.more
+        %div.notecard-title.alt-color
+          %div.body-text
+            = notecard.title
+        %div.notecard-quote
+          %div.body-text
+            = notecard.quote
+        %div.notecard-note.alt-color
+          %div.body-text
+            = notecard.note
+
+%div.container
+  = link_to "Create Notecard", new_notecard_path, class: 'alt'
