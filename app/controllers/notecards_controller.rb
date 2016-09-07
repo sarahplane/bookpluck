@@ -38,6 +38,14 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
+    @notecard = Notecard.find(params[:id])
+    old_title = @notecard.title
+    if @notecard.destroy
+      flash[:notice] = "notecard #{old_title} deleted"
+    else
+      flash.now[:alert] = "notecard #{@notecard.title} NOT deleted, please try again"
+    end
+    redirect_to notecards_path
   end
 
 private

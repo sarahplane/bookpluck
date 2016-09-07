@@ -8,11 +8,14 @@
     - @notecards.each do |notecard|
       %div.notecard.margin-bottom.more.margin-right
         %div.notecard-title.alt-color
-          %div.padding-bottom.padding-top.padding-left
+          %div.padding-bottom.padding-top.padding-left.title-text
             = notecard.title
-          %div
-            = link_to "view", notecard, class: 'alt'
-            = link_to "edit", edit_notecard_path(notecard.id), class: 'alt'
+          %div.padding-left.padding-bottom
+            = link_to "view", notecard, class: 'links'
+            |
+            = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
+            |
+            = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
         %div.notecard-quote
           %div.padding-bottom.padding-top.padding-left
             = notecard.quote

@@ -229,13 +229,23 @@ input[type=text] {
   border: solid 1px $theme-color;
   width: $notecard-width;
   display: inline-block;
+  font: 'Roboto', serif;
 }
 
 .notecard-title {
   width: $notecard-width;
   background-color: $main-color-alt1;
+}
+
+.title-text {
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.links {
+  text-decoration: none;
+  color: darkgray;
+  font-style: italic;
 }
 
 .notecard-quote {
