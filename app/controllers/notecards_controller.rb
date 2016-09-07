@@ -4,6 +4,7 @@ class NotecardsController < ApplicationController
   end
 
   def show
+    @notecard = Notecard.find(params[:id])
   end
 
   def new
@@ -23,9 +24,17 @@ class NotecardsController < ApplicationController
   end
 
   def edit
+    @notecard = Notecard.find(params[:id])
   end
 
   def update
+    @notecard = Notecard.find(params[:id])
+    if @notecard.update(notecard_params)
+      flash[:notice] = "notecard #{@notecard.title} edited"
+      redirect_to notecards_path
+    else
+      render :edit
+    end
   end
 
   def destroy

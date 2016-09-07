@@ -1,13 +1,17 @@
 = form_for(notecard) do |f|
 
-  %div.body-text
-    = f.text_field :title, placeholder: 'title'
+  %div.notecard.margin-bottom.more.margin-right
+    %div.notecard-title.alt-color
+      %div.padding-bottom.padding-top.padding-left
+        = f.text_field :title, placeholder: 'title', class: 'main-color'
 
-  %div.body-text
-    = f.text_area :quote, placeholder: 'quote'
+    %div.notecard-quote
+      %div.padding-bottom.padding-top.padding-left
+        = f.text_area :quote, placeholder: 'quote', class: 'alt-color'
 
-  %div.body-text
-    = f.text_area :note, placeholder: 'note'
+    %div.notecard-note.alt-color
+      %div.padding-bottom.padding-top.padding-left
+        = f.text_area :note, placeholder: 'note', class: 'main-color'
 
-  %div.body-text
-    = f.submit 'create'
+  %div.margin-bottom
+    = f.submit 'submit'

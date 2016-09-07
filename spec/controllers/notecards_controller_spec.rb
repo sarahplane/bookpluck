@@ -7,4 +7,12 @@ RSpec.describe NotecardsController, type: :controller do
       expect(response).to be_success
     end
   end
+
+  describe "POST #create" do
+    it "redirects to index page" do
+      post :create, notecard: {title: 'one', quote: 'one', note: 'one'}
+      id = assigns(:notecard)
+      expect(response).to redirect_to notecards_path
+    end
+  end
 end

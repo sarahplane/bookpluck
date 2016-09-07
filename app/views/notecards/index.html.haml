@@ -6,16 +6,22 @@
 
   %div
     - @notecards.each do |notecard|
-      %div.notecard.margin-bottom.more
+      %div.notecard.margin-bottom.more.margin-right
         %div.notecard-title.alt-color
-          %div.body-text
+          %div.padding-bottom.padding-top.padding-left
             = notecard.title
+          %div
+            = link_to "view", notecard, class: 'alt'
+            = link_to "edit", edit_notecard_path(notecard.id), class: 'alt'
         %div.notecard-quote
-          %div.body-text
+          %div.padding-bottom.padding-top.padding-left
             = notecard.quote
         %div.notecard-note.alt-color
-          %div.body-text
+          %div.padding-bottom.padding-top.padding-left
             = notecard.note
 
+
 %div.container
-  = link_to "Create Notecard", new_notecard_path, class: 'alt'
+  %div.margin-bottom
+    = link_to "Create Notecard", new_notecard_path, class: 'button'
+    = link_to "Home", root_path, class: 'button'

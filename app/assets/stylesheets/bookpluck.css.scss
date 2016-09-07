@@ -3,15 +3,16 @@ $main-color-alt1: #404452;
 $alt-text: #fff;
 $theme-color: #ffa500;
 $notecard-width: 400px;
+$button-color: $theme-color;
 
 html, body {
   padding: 0;
   margin: 0;
-  font: 20px 'Lora', serif;
+  font: 17px 'Roboto', serif;
   color: $main-color;
 
   &.main {
-    background-color: $main-color
+    background-color: $main-color;
   }
 }
 
@@ -47,12 +48,72 @@ h3 {
   margin: .5em;
 }
 
+textarea {
+  font-size: 14px;
+  margin-bottom: 2em;
+  border: none;
+  width: 375px;
+  height: 150px;
+  resize: none;
+
+  &.main-color {
+    background-color: $main-color-alt1;
+    color: #fff;
+
+    &:focus {
+      outline: solid 1px lightgray;
+      outline-offset: 2px;
+    }
+  }
+
+  &.alt-color {
+    color: $main-color;
+
+    &:focus {
+      outline: solid 1px lightgray;
+      outline-offset: 2px;
+    }
+  }
+}
+
+input[type=text] {
+  font-size: 14px;
+  border: none;
+  width: 375px;
+
+  &.main-color {
+    background-color: $main-color-alt1;
+    color: #fff;
+
+    &:focus {
+      outline: solid 1px lightgray;
+      outline-offset: 2px;
+    }
+  }
+}
+
 .theme-color {
   color: $main-color;
 }
 
 .alt-color {
   color: $alt-text;
+}
+
+.button, input[type="submit" i] {
+  background-color: $button-color;
+  border: 1px solid $button-color;
+  border-radius: 2px;
+  color: white;
+  font: 12px 'Roboto', sans-serif;
+  padding: 5px 10px 5px 10px;
+  margin: 1em .5em 1em 0em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    font-weight: bold;
+  }
 }
 
 /* LAYOUT */
@@ -104,6 +165,18 @@ h3 {
   margin-right: 2em;
 }
 
+.padding-top {
+  padding-top: 1em;
+
+  &.more {
+    padding-top: 2em;
+  }
+}
+
+.padding-left {
+  padding-left: 10px;
+}
+
 .padding-bottom {
   padding-bottom: 1em;
 
@@ -119,15 +192,15 @@ h3 {
 .body-text {
   width: 75%;
   margin: 0 auto;
-  line-height: 200%;
 }
+
 
 /* HOMEPAGE STYLING */
 
 .section {
   margin: 0;
   width: 100%;
-  min-height: 20em;
+  min-height: 25em;
 
   &.dark {
     background-color: $main-color;
@@ -141,8 +214,13 @@ h3 {
   }
 
   &.tall {
-    min-height: 33em;
+    min-height: 45em;
   }
+}
+
+.home-text {
+  font: 20px 'Lora', serif;
+  line-height: 2;
 }
 
 /* NOTECARDS */

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :notecards
-
   controller :pages do
     get :home
   end
+
+  resources :notecards
 
   root 'pages#home'
 end
