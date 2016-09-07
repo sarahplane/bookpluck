@@ -1,7 +1,8 @@
 class NotecardsController < ApplicationController
   def index
+    @notecards = Notecard.all
   end
-  
+
   def show
   end
 

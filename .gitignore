@@ -20,6 +20,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore Simplecov files
 coverage
 
+# Ignore Mac files
 .DS_Store

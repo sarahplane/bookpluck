@@ -1,26 +1,50 @@
 %div.section.light
   %div.container
-    %div.inline
+    %div.inline.margin-top
       = link_to root_path do
         = image_tag("/assets/logo.png")
     %div.topright
       = link_to "about", '#about', class: "alt"
       |
       = link_to "features", '#features', class: "alt"
+      |
+      = link_to "notecards", notecards_path, class: "alt"
     %h2.alt-color.margin-top.more
       = "extract marginalia, optimize learning"
     %h3.alt-color
       = "BookPluck helps you discover the hidden connections between texts"
-%div.section
+%div.section.tall#about
   %div.container
-    %div.inline.valign.margin-top
+    %div.inline.valign.margin-top.margin-right
       %img(src="/assets/icon-placeholder.png")
-    %h1.inline.valign#about
+    %h1.inline.valign
       = "About"
-%div.section.theme
+    %div.body-text.margin-top.more.padding-bottom.more
+      = "BookPluck is a reading note organization app that"
+      = "is based on the system developed by Paul Otlet"
+      = "early in the 20th century. He discovered that"
+      = "once he'd removed a section from a book, it no"
+      = "longer made sense to catalogue that section solely"
+      = "based on the book. Rather, he catalogued it by"
+      = "theme. Books each contain dozens, sometimes"
+      = "hundreds of themes. By tagging quotes by theme,"
+      = "Otlet was able to compare sections between books"
+      = "on vastly different subject matter. At it's peak,"
+      = "his collection of notecards numbered more than"
+      = "15 million."
+
+%div.section.tall.theme#features
   %div.container
-    %div.inline.valign.margin-top
+    %div.inline.valign.margin-top.margin-right
       %img(src="/assets/icon-placeholder.png")
-    %h1.inline.valign.alt-color#features
+    %h1.inline.valign.alt-color
       = "Features"
-%div.section.dark
+    %ul.body-text.margin-top.more.padding-bottom.more.alt-color
+      %li
+        = "Robust tagging system"
+      %li
+        = "Plaintext import capabilities"
+      %li
+        = 'Kindle "My Clippings" text file import'
+
+%div.footer

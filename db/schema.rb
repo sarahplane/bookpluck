@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160830135646) do
   create_table "notecards", force: :cascade do |t|
     t.string   "title"
     t.text     "quote"
+    t.text     "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
