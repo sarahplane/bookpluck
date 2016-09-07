@@ -15,4 +15,20 @@ RSpec.describe NotecardsController, type: :controller do
       expect(response).to redirect_to notecards_path
     end
   end
+
+  describe "PATCH #update" do
+    it "updates the title" do
+      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
+      patch :update, id: @notecard, notecard: {title: 'two'}
+      @notecard.reload.title.should == 'two'
+    end
+  end
+
+  describe "DELETE #destory" do
+    it "redirects to the index page" do
+      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
+      delete :destroy, id: @notecard
+      expect(response).to redirect_to notecards_path
+    end
+  end
 end

@@ -11,8 +11,6 @@
           %div.padding-bottom.padding-top.padding-left.title-text
             = notecard.title
           %div.padding-left.padding-bottom
-            = link_to "view", notecard, class: 'links'
-            |
             = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
             |
             = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
