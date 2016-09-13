@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'haml'
 
+gem 'bootstrap-sass', '~> 3.3'
+
 group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'simplecov', '~> 0.12.0'
