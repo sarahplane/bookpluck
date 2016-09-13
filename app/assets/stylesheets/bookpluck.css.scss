@@ -1,9 +1,6 @@
 @import 'variables';
 
 html, body {
-  padding: 0;
-  margin: 0;
-  font: 17px 'Roboto', serif;
   color: $primary-color;
 
   &.main {
@@ -47,7 +44,6 @@ textarea {
   font-size: 14px;
   margin-bottom: 2em;
   border: none;
-  width: 375px;
   height: 150px;
   resize: none;
 
@@ -74,7 +70,6 @@ textarea {
 input[type=text], input[type=number] {
   font-size: 14px;
   border: none;
-  width: 375px;
 
   &.main-color {
     background-color: $secondary-color;
@@ -125,10 +120,6 @@ input[type=text], input[type=number] {
   background-color: $primary-color;
 }
 
-.container {
-  width: 90%;
-  margin: auto;
-}
 
 .right {
   text-align: right;

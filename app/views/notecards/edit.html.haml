@@ -1,9 +1,11 @@
-%body.main
+.container
+  .row
+    .col-md-2
+    .col-md-8
+      .h1
+        = "Edit: #{@notecard.title}"
 
-%div.container
-  %h1.alt-color
-    = "Edit: #{@notecard.title}"
+      = render partial: 'form', locals: {notecard: @notecard}
 
-%div.container
-  = render partial: 'form', locals: {notecard: @notecard}
-  = link_to 'Back', notecards_path, class: "button"
+      .btn.btn-default
+        = link_to 'Back', notecards_path, class: "button"

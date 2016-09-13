@@ -1,35 +1,30 @@
-%body.main
+.container
+  .row
+    .col-md-2
+    .col-md-8
+      .h1
+        = "Notecard List"
 
-%div.container
-  %h1.alt-color
-    = "Notecard List"
-
-  %div
-    - @notecards.each do |notecard|
-      %div.notecard.margin-bottom.more.margin-right
-        %div.notecard-title.alt-color
-          %div.padding-bottom.padding-top.padding-left.title-text
+      - @notecards.each do |notecard|
+        .panel.panel-default
+          .panel-heading
             = notecard.title
-          %div.padding-left.padding-bottom
-            = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
-            |
-            = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
-        %div.notecard-quote
-          %div.padding-bottom.padding-top.padding-left
+          .panel-body
             = notecard.quote
-        %div.notecard-title.alt-color
-          %div.padding-bottom.padding-top.padding-left.title-text
+          .panel-body
             = notecard.book.title
             = notecard.book.publisher
             = notecard.book.editor
             = notecard.book.isbn
             = notecard.book.year_published
-        %div.notecard-note
-          %div.padding-bottom.padding-top.padding-left
+          .panel-footer
             = notecard.note
+          .panel-footer
+            = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
+            |
+            = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
 
-
-%div.container
-  %div.margin-bottom
-    = link_to "Create Notecard", new_notecard_path, class: 'button'
-    = link_to "Home", root_path, class: 'button'
+      .btn.btn-default
+        = link_to "Create Notecard", new_notecard_path
+      .btn.btn-default
+        = link_to "Home", root_path
