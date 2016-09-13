@@ -3,11 +3,24 @@
   %div.notecard.margin-bottom.more.margin-right
     %div.notecard-title.alt-color
       %div.padding-bottom.padding-top.padding-left
-        = f.text_field :title, placeholder: 'title', class: 'main-color'
+        = f.text_field :title, placeholder: 'one', class: 'main-color'
 
     %div.notecard-quote
       %div.padding-bottom.padding-top.padding-left
         = f.text_area :quote, placeholder: 'quote', class: 'alt-color'
+
+    = f.fields_for :book do |t|
+      %div.notecard-title.alt-color
+        %div.padding-bottom.padding-top.padding-left
+          = t.text_field :title, placeholder: 'book title', class: 'main-color'
+        %div.padding-bottom.padding-left
+          = t.text_field :publisher, placeholder: 'publisher', class: 'main-color'
+        %div.padding-bottom.padding-left
+          = t.text_field :editor, placeholder: 'editor', class: 'main-color'
+        %div.padding-bottom.padding-left
+          = t.text_field :isbn, placeholder: 'isbn', class: 'main-color'
+        %div.padding-bottom.padding-left
+          = t.number_field :year_published, placeholder: 'year of publication', class: 'main-color'
 
     %div.notecard-note.alt-color
       %div.padding-bottom.padding-top.padding-left

@@ -10,14 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830135646) do
+ActiveRecord::Schema.define(version: 20160912000818) do
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title"
+    t.string   "publisher"
+    t.string   "editor"
+    t.string   "isbn"
+    t.integer  "year_published"
+    t.integer  "notecard_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["notecard_id"], name: "index_books_on_notecard_id"
+  end
 
   create_table "notecards", force: :cascade do |t|
     t.string   "title"
     t.text     "quote"
     t.text     "note"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_notecards_on_book_id"
   end
 
 end

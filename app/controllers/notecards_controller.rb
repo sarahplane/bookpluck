@@ -9,18 +9,20 @@ class NotecardsController < ApplicationController
 
   def new
     @notecard = Notecard.new
+    @book = Book.new
+    @notecard.book = @book
   end
 
   def create
     @notecard = Notecard.new(notecard_params)
     @notecard.title = params[:notecard][:title]
 
-  if @notecard.save
-    flash[:notice] = "Notecard added"
-    redirect_to notecards_path
-  else
-    render :new
-  end
+    if @notecard.save
+      flash[:notice] = "Notecard added"
+      redirect_to notecards_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -29,6 +31,7 @@ class NotecardsController < ApplicationController
 
   def update
     @notecard = Notecard.find(params[:id])
+
     if @notecard.update(notecard_params)
       flash[:notice] = "notecard #{@notecard.title} edited"
       redirect_to notecards_path
@@ -50,6 +53,7 @@ class NotecardsController < ApplicationController
 
 private
   def notecard_params
-    params.require(:notecard).permit(:title, :quote, :note)
+    Rails.logger.info "test"
+    params.require(:notecard).permit(:title, :quote, :note, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
   end
 end
