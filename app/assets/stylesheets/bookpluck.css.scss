@@ -1,6 +1,21 @@
+.container, .container-fluid {
+  &.tall {
+    min-height: 45em;
+  }
+  &.alt-background {
+    background-color: #eeeeee;
+  }
+}
+
 .panel-heading {
   &.notecard {
     min-height: 4em;
+  }
+}
+
+.panel-title {
+  a {
+    text-decoration: none;
   }
 }
 
@@ -21,4 +36,31 @@
 
 .padding-bottom {
   margin-bottom: 3em;
+}
+
+.btn {
+  margin-top: 1em;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.margin-top {
+  margin-top: 1em;
+}
+.margin-bottom {
+  margin-bottom: 1em;
+}
+
+.padding-top {
+  padding-top: 1em;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.nav-home {
+  background-color: #eeeeee;
 }

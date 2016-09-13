@@ -1,50 +1,67 @@
-%div.section.solarized
-  %div.container
-    %div.inline.margin-top
-      = link_to root_path do
-        = image_tag("/assets/logo.png")
-    %div.topright
-      = link_to "about", '#about', class: "alt"
-      |
-      = link_to "features", '#features', class: "alt"
-      |
-      = link_to "notecards", notecards_path, class: "alt"
-    %h2.alt-color.margin-top.more
+.container-fluid.nav-home
+  .col-md-2
+    = link_to root_path do
+      = image_tag("/assets/logo.png")
+  .col-md-6
+  .col-md-4
+    %ul.nav.nav-pills.margin-top.margin-bottom
+      %li.active{:role => "presentation"}
+        = link_to "notecards", notecards_path, class: "alt"
+      %li{:role => "presentation"}
+        = link_to "about", '#about', class: "alt"
+      %li{:role => "presentation"}
+        = link_to "features", '#features', class: "alt"
+
+.jumbotron
+  .container.centered-text
+    %h2
       = "extract marginalia, optimize learning"
-    %h3.alt-color
+    %p
       = "BookPluck helps you discover the hidden connections between texts"
-%div.section.tall#about
-  %div.container
-    %div.inline.valign.margin-top.margin-right
-      %img(src="/assets/icon-placeholder.png")
-    %h1.inline.valign
-      = "About"
-    %div.body-text.margin-top.more.padding-bottom.more.home-text
-      = "BookPluck is a reading note organization app that"
-      = "is based on the system developed by Paul Otlet"
-      = "early in the 20th century. He discovered that"
-      = "once he'd removed a section from a book, it no"
-      = "longer made sense to catalogue that section solely"
-      = "based on the book. Rather, he catalogued it by"
-      = "theme. Books each contain dozens, sometimes"
-      = "hundreds of themes. By tagging quotes by theme,"
-      = "Otlet was able to compare sections between books"
-      = "on vastly different subject matter. At it's peak,"
-      = "his collection of notecards numbered more than"
-      = "15 million."
+    %p
+      %a.btn.btn-primary.btn-lg{:href => "#", :role => "button"} Sign up
 
-%div.section.tall.light#features
-  %div.container
-    %div.inline.valign.margin-top.margin-right
-      %img(src="/assets/icon-placeholder.png")
-    %h1.inline.valign
-      = "Features"
-    %ul.body-text.margin-top.more.padding-bottom.more.home-text
-      %li
-        = "Robust tagging system"
-      %li
-        = "Plaintext import capabilities"
-      %li
-        = 'Kindle "My Clippings" text file import'
+.container-fluid.tall.padding-top#about
+  .row
+    .col-md-2
+    .col-md-8
+      .media
+      .media-left
+        %img.media-object{:alt => "icon", :src => "/assets/icon-placeholder.png"}/
+      .media-body
+        %h2.media-heading
+          = "About"
+        %p.lead
+          = "BookPluck is a reading note organization app that"
+          = "is based on the system developed by Paul Otlet"
+          = "early in the 20th century. He discovered that"
+          = "once he'd removed a section from a book, it no"
+          = "longer made sense to catalogue that section solely"
+          = "based on the book. Rather, he catalogued it by"
+          = "theme. Books each contain dozens, sometimes"
+          = "hundreds of themes. By tagging quotes by theme,"
+          = "Otlet was able to compare sections between books"
+          = "on vastly different subject matter. At it's peak,"
+          = "his collection of notecards numbered more than"
+          = "15 million."
+    .col-md-2
 
-%div.footer
+.container-fluid.tall.alt-background.padding-top#features
+  .row
+    .col-md-2
+    .col-md-8
+      .media
+      .media-left
+        %img.media-object{:alt => "icon", :src => "/assets/icon-placeholder.png"}/
+      .media-body
+        %h2.media-heading
+          = "Features"
+        %ul.lead
+          %li
+            = "Robust tagging system"
+          %li
+            = "Plaintext import capabilities"
+          %li
+            = 'Kindle "My Clippings" text file import'
+    .col-md-2
+.container-fluid.tall
