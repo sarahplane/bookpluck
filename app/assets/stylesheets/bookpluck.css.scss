@@ -1,181 +1,24 @@
-@import 'variables';
-
-html, body {
-  color: $primary-color;
-
-  &.main {
-    background-color: $primary-color;
+.panel-heading {
+  &.notecard {
+    min-height: 4em;
   }
 }
 
-a {
-  text-decoration: none;
-
-  &.alt {
-    color: #fff;
+.panel-body {
+  &.quote {
+    min-height: 15em;
+  }
+  &.book {
+    background-color: lightgray;
   }
 }
 
-h1 {
-  font-size: 33px;
-  margin-top: 1em;
-  padding-top: 0;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 40px;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Roboto Condensed';
-  font-weight: normal;
-  margin: .5em;
-}
-
-h3 {
-  font-size: 18px;
-  text-align: center;
-  font-style: italic;
-  font-family: 'Roboto';
-  margin: .5em;
-}
-
-textarea {
-  font-size: 14px;
-  margin-bottom: 2em;
-  border: none;
-  height: 150px;
-  resize: none;
-
-  &.main-color {
-    background-color: $accent-color;
-    color: $primary-color;
-
-    &:focus {
-      outline: solid 1px lightgray;
-      outline-offset: 2px;
-    }
+.panel-footer {
+  &.note {
+    min-height: 15em;
   }
-
-  &.alt-color {
-    color: $primary-color;
-
-    &:focus {
-      outline: solid 1px lightgray;
-      outline-offset: 2px;
-    }
-  }
-}
-
-input[type=text], input[type=number] {
-  font-size: 14px;
-  border: none;
-
-  &.main-color {
-    background-color: $secondary-color;
-    color: #fff;
-
-    &:focus {
-      outline: solid 1px lightgray;
-      outline-offset: 2px;
-    }
-  }
-}
-
-.theme-color {
-  color: $primary-color;
-}
-
-.alt-color {
-  color: $alt-text;
-}
-
-.button, input[type="submit" i] {
-  background-color: $button-color;
-  border: 1px solid $button-color;
-  border-radius: 2px;
-  color: white;
-  font: 12px 'Roboto', sans-serif;
-  padding: 5px 10px 5px 10px;
-  margin: 1em .5em 1em 0em;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  &:hover {
-    font-weight: bold;
-  }
-}
-
-.body-text {
-  width: 75%;
-  margin: 0 auto;
-}
-
-/* LAYOUT */
-
-.footer {
-  margin: 0;
-  width: 100%;
-  min-height: 3em;
-  background-color: $primary-color;
-}
-
-
-.right {
-  text-align: right;
-}
-
-.inline {
-  display: inline-block;
-}
-
-.topright {
-  position: absolute;
-  top: 1em;
-  right: 2em;
-  font-size: 18px;
-}
-
-.valign {
-  vertical-align: middle;
-}
-
-.margin-top {
-  margin-top: 1em;
-
-  &.more {
-    margin-top: 2em;
-  }
-}
-
-.margin-bottom {
-  margin-bottom: 1em;
-
-  &.more {
-    margin-bottom: 2em;
-  }
-}
-
-.margin-right {
-  margin-right: 2em;
-}
-
-.padding-top {
-  padding-top: 1em;
-
-  &.more {
-    padding-top: 2em;
-  }
-}
-
-.padding-left {
-  padding-left: 10px;
 }
 
 .padding-bottom {
-  padding-bottom: 1em;
-
-  &.more {
-    padding-bottom: 2em;
-  }
+  margin-bottom: 3em;
 }

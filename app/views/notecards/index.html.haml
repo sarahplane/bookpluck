@@ -1,30 +1,32 @@
-.container
+.container.page
   .row
     .col-md-2
-    .col-md-8
-      .h1
-        = "Notecard List"
-
-      - @notecards.each do |notecard|
-        .panel.panel-default
-          .panel-heading
-            = notecard.title
-          .panel-body
-            = notecard.quote
-          .panel-body
-            = notecard.book.title
-            = notecard.book.publisher
-            = notecard.book.editor
-            = notecard.book.isbn
-            = notecard.book.year_published
-          .panel-footer
-            = notecard.note
-          .panel-footer
-            = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
-            |
-            = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
-
       .btn.btn-default
         = link_to "Create Notecard", new_notecard_path
       .btn.btn-default
         = link_to "Home", root_path
+    .col-md-8.padding-bottom
+      .h1
+        = "Notecard List"
+
+      - @notecards.each do |notecard|
+        #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+          .panel.panel-default
+            .panel-heading.notecard{:id => "heading#{notecard.id}", :role => "tab"}
+              %a.collapsed{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
+                = notecard.title
+            .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
+              .panel-body.quote
+                = notecard.quote
+              .panel-body.book
+                = notecard.book.title
+                = notecard.book.publisher
+                = notecard.book.editor
+                = notecard.book.isbn
+                = notecard.book.year_published
+              .panel-footer.note
+                = notecard.note
+              .panel-footer
+                = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
+                |
+                = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
