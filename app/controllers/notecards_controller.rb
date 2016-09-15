@@ -1,7 +1,6 @@
 class NotecardsController < ApplicationController
   def index
     @notecards = Notecard.all
-    #@books = Book.find(params[:book_id])
   end
 
   def show

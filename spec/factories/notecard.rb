@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :notecard do
+  factory :notecard do |f|
 
-    title "Some Title"
-    quote "Some Quote"
+    f.title "Some Title"
+    f.quote "Some Quote"
   end
 end
