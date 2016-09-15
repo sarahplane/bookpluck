@@ -8,6 +8,15 @@ RSpec.describe NotecardsController, type: :controller do
     end
   end
 
+  describe " GET #new" do
+    it "assigns @notecard.book" do
+      @book = Book.create(title: 'one')
+      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
+      @notecard.book = @book
+      expect(@notecard.book).to eq(@book)
+    end
+  end
+
   describe "POST #create" do
     it "responds with a 200 status" do
       post :create, notecard: {title: 'one', quote: 'one', note: 'one'}
@@ -21,7 +30,8 @@ RSpec.describe NotecardsController, type: :controller do
       @book = Book.create(title: 'one')
       @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one', book: @book)
       patch :update, :id => @notecard.id, notecard: {title: 'two'}
-      @notecard.reload.title.should == 'two'
+      @notecard.reload
+      expect(@notecard.title).to eq('two')
     end
   end
 
