@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 20160912000818) do
     t.string   "editor"
     t.string   "isbn"
     t.integer  "year_published"
-    t.integer  "notecard_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["notecard_id"], name: "index_books_on_notecard_id"
   end
 
   create_table "notecards", force: :cascade do |t|

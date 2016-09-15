@@ -7,6 +7,12 @@
   }
 }
 
+.jumbotron {
+  &.tall {
+    min-height: 45em;
+  }
+}
+
 .panel-heading {
   &.notecard {
     min-height: 4em;

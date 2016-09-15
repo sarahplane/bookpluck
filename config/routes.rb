@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :notecards
+  resources :books
 
   root 'pages#home'
 end

@@ -9,25 +9,27 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "redirects to index page" do
+    it "responds with a 200 status" do
       post :create, notecard: {title: 'one', quote: 'one', note: 'one'}
       id = assigns(:notecard)
-      expect(response).to redirect_to notecards_path
+      expect(response.status).to eq(200)
     end
   end
 
   describe "PATCH #update" do
     it "updates the title" do
-      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
-      patch :update, id: @notecard, notecard: {title: 'two'}
+      @book = Book.create(title: 'one')
+      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one', book: @book)
+      patch :update, :id => @notecard.id, notecard: {title: 'two'}
       @notecard.reload.title.should == 'two'
     end
   end
 
   describe "DELETE #destory" do
     it "redirects to the index page" do
-      @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
-      delete :destroy, id: @notecard
+      book = Book.create(title: 'one')
+      notecard = Notecard.create(title: 'one', quote: 'one', note: 'one', book: book)
+      delete :destroy, id: notecard.id
       expect(response).to redirect_to notecards_path
     end
   end
