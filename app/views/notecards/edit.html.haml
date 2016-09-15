@@ -2,7 +2,7 @@
   .row
     .col-md-2
     .col-md-8
-      .h1
+      .h1.text-uppercase
         = "Edit: #{@notecard.title}"
 
       = render partial: 'form', locals: {notecard: @notecard}
