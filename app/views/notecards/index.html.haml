@@ -22,14 +22,9 @@
               .panel-body.quote
                 = notecard.quote
               .panel-body.book
-                = notecard.book.title
-                = notecard.book.publisher
-                = notecard.book.editor
-                = notecard.book.isbn
-                = notecard.book.year_published
-              - notecard.authors.each do |author|
-                .panel-body.quote
-                  = author.last_name
+                = "#{'"'}#{notecard.book.title}#{'"'} by"
+                - notecard.authors.each do |author|
+                  = "#{author.first_name} #{author.last_name}"
               .panel-footer.note
                 = notecard.note
               .panel-footer
