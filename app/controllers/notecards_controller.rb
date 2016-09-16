@@ -54,6 +54,6 @@ class NotecardsController < ApplicationController
 private
   def notecard_params
     Rails.logger.info "test"
-    params.require(:notecard).permit(:title, :quote, :note, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
+    params.require(:notecard).permit(:title, :quote, :note, :author_list, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
   end
 end
