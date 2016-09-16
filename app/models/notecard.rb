@@ -11,15 +11,13 @@ class Notecard < ActiveRecord::Base
     too_long: "1500 characters is the maximum allowed"}
     # customizes the error message
 
-  def author_list
-    authors.join(', ')
+  def author_names
+    author_names = authors.join(', ')
   end
 
-  def author_list=(author_list)
-    author_names = author_list.split(',')
-    new_or_found_authors = author_names.map do |last_name|
-      Author.find_or_create_by(last_name: last_name)
-    end
-    self.authors = new_or_found_authors
+  def author_names=(author_names)
+    author_names = author_list.split(', ')
+    new_or_found_author = Author.find_or_create_by(last_name: "#{author_names[0]}", first_name: "#{author_names[1]}")
+    self.authors << new_or_found_author
   end
 end
