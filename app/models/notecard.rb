@@ -12,12 +12,12 @@ class Notecard < ActiveRecord::Base
     # customizes the error message
 
   def author_names
-    author_names = authors.join(', ')
+    author_names = authors.join(' ')
   end
 
   def author_names=(author_names)
-    author_names_list = author_names.split(', ')
-    new_or_found_author = Author.find_or_create_by(last_name: "#{author_names_list[0]}", first_name: "#{author_names_list[1]}")
+    first_name, last_name = author_names.split(' ', 2)
+    new_or_found_author = Author.find_or_create_by(last_name: last_name, first_name: first_name)
     self.authors << new_or_found_author
   end
 end

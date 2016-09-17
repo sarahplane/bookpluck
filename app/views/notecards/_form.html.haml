@@ -31,8 +31,8 @@
         = t.text_field :isbn, placeholder: 'isbn'
       .panel-body
         = t.number_field :year_published, placeholder: 'year of publication'
-    .panel-body
-      = f.text_field :author_names, placeholder: 'Last Name, First Name'
+    .panel-body.inline
+      = f.text_field :author_names, placeholder: 'ex: John Smith'
     .panel-footer
       = f.text_area :note, placeholder: 'note'
   = f.submit 'submit', class: 'btn btn-default'
