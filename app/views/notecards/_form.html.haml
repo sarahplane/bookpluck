@@ -3,36 +3,31 @@
     %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
       %span{"aria-hidden" => "true"} ×
     %strong
-      = pluralize(@notecard.errors.count, "error")
-      prohibited this notecard from saving
+      = "There was a problem saving your notecard"
     %p
       = "Please address the highlighted #{"field".pluralize(@notecard.errors.count)} and resubmit"
 
 = form_for(notecard) do |f|
-  .panel.panel-default
-    .panel-heading
-      = f.text_field :title, placeholder: 'title'
+  .panel.panel-notecard
+    .panel-body.panel-body-input
+      = f.text_field :title, placeholder: 'title', class: 'textfield'
       .error-text.text-danger
         = show_errors(@notecard, :title)
-    .panel-body
+    .panel-body.panel-body-input-alt
       = f.text_area :quote, placeholder: 'quote'
       .error-text.text-danger
         = show_errors(@notecard, :quote)
     = f.fields_for :book do |t|
-      .panel-body
-        = t.text_field :title, placeholder: 'book title'
+      .panel-body.panel-body-input
+        = t.text_field :title, placeholder: 'book title', class: 'textfield'
         .error-text.text-danger
           = show_errors(@notecard.book, :title)
-      .panel-body
-        = t.text_field :publisher, placeholder: 'publisher'
-      .panel-body
-        = t.text_field :editor, placeholder: 'editor'
-      .panel-body
-        = t.text_field :isbn, placeholder: 'isbn'
-      .panel-body
-        = t.number_field :year_published, placeholder: 'year of publication'
-    .panel-body.inline
-      = f.text_field :author_names, placeholder: 'ex: John Smith'
-    .panel-footer
+    .panel-body.panel-body-input
+      = f.text_field :author_names, placeholder: 'ex: John Smith', class: 'textfield'
+      - if !@notecard.errors.messages[:author_names].blank?
+        .error-text.text-danger
+          = @notecard.errors.messages[:author_names].join(', ')
+
+    .panel-body.panel-body-input-alt
       = f.text_area :note, placeholder: 'note'
   = f.submit 'submit', class: 'btn btn-default'

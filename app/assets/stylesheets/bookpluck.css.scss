@@ -1,3 +1,23 @@
+$orange: #ffa500;
+$solarized-dark: #1A1E22;
+$solarized: #282C34;
+$light-gray: #f0f2f4;
+$white: #fff;
+
+$primary-color: $solarized-dark;
+$secondary-color: $solarized;
+$accent-color: $light-gray;
+$theme-color: $orange;
+
+$alt-text: $white;
+$button-color: $theme-color;
+$panel-alt-color: #37474F;
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+  background-color: #263238;
+}
 .container, .container-fluid {
   &.tall {
     min-height: 45em;
@@ -6,6 +26,13 @@
     background-color: #eeeeee;
   }
 }
+.container-fluid-main {
+  background-color: #263238;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 100%;
+  height: 100%;
+}
 
 .jumbotron {
   &.tall {
@@ -13,12 +40,11 @@
   }
 }
 
-.panel-heading {
-  &.notecard {
-    min-height: 4em;
-  }
-}
 
+.panel-notecard {
+  border: solid 15px $panel-alt-color;
+  border-top: solid 5px $panel-alt-color;
+}
 .panel-title {
   a {
     text-decoration: none;
@@ -26,13 +52,59 @@
 }
 
 .panel-body {
-  &.quote {
-    min-height: 15em;
+  &.panel-body-input-alt {
+    textarea {
+      border: none;
+      text-indent: 5px;
+      border-left: solid 2px black;
+      &:focus {
+        outline: none;
+      }
+    }
   }
-  &.book {
-    background-color: lightgray;
+  &.panel-body-input {
+    background-color: $panel-alt-color;
+    input {
+      background-color: $panel-alt-color;
+      border: none;
+      text-indent: 5px;
+      border-left: solid 2px white;
+      margin-bottom: 5px;
+      color: white;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &.panel-body-notecard-alt {
+    height: 300px;
+  }
+  &.panel-body-notecard {
+    background-color: $panel-alt-color;
+    color: white;
+    a, a:hover, a:visited, a:focus {
+      color: white;
+      text-decoration: none;
+    }
   }
 }
+
+.outline {
+  border: solid 1px white;
+  border-radius: 5.5px;
+  color: white;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: black;
+  }
+}
+
+.panel-group .panel + .panel {
+    margin-top: 0;
+}
+
 
 .panel-footer {
   &.note {
@@ -46,10 +118,15 @@
 
 .btn {
   margin-top: 1em;
+  text-transform: uppercase;
 
   a {
     text-decoration: none;
   }
+}
+
+.nav-pills {
+  margin-bottom: 15px;
 }
 
 .margin-top {
@@ -77,5 +154,10 @@
 
 textarea {
   width: 100%;
+  height: 200px;
   resize: none;
+}
+
+.textfield {
+  width: 100%;
 }
