@@ -1,18 +1,19 @@
-.container-fluid.nav-home
-  .col-md-2
-    = link_to root_path do
-      = image_tag("/assets/logo.png")
-  .col-md-6
-  .col-md-4
-    %ul.nav.nav-pills.margin-top.margin-bottom
-      %li.active{:role => "presentation"}
-        = link_to "notecards", notecards_path, class: "alt"
-      %li{:role => "presentation"}
-        = link_to "about", '#about', class: "alt"
-      %li{:role => "presentation"}
-        = link_to "features", '#features', class: "alt"
+.container-fluid.home-color
+  .row
+    .col-md-2
+      = link_to root_path do
+        = image_tag("/assets/logo.png")
+    .col-md-6
+    .col-md-4
+      %ul.nav.nav-pills.margin-top.margin-bottom
+        %li.active{:role => "presentation"}
+          = link_to "notecards", notecards_path, class: "alt"
+        %li{:role => "presentation"}
+          = link_to "about", '#about', class: "alt"
+        %li{:role => "presentation"}
+          = link_to "features", '#features', class: "alt"
 
-.jumbotron.tall
+.jumbotron.tall.home-color
   .container.centered-text
     %h2.text-uppercase
       = "extract marginalia, optimize learning"
@@ -21,7 +22,7 @@
     %p
       %a.btn.btn-primary.btn-lg{:href => "#", :role => "button"} Sign up
 
-.container-fluid.tall.padding-top#about
+.container-fluid.tall.padding-top.home-color-alt#about
   .row
     .col-md-2
     .col-md-8
@@ -46,22 +47,21 @@
           = "15 million."
     .col-md-2
 
-.container-fluid.tall.alt-background.padding-top#features
+.container-fluid.tall.padding-top.home-color#features
   .row
     .col-md-2
-    .col-md-8
-      .media
-      .media-left
-        %img.media-object{:alt => "icon", :src => "/assets/icon-placeholder.png"}/
-      .media-body
-        %h2.media-heading
-          = "Features"
-        %ul.lead
-          %li
-            = "Robust tagging system"
-          %li
-            = "Plaintext import capabilities"
-          %li
-            = 'Kindle "My Clippings" text file import'
-    .col-md-2
-.container-fluid.tall
+    .col-md-8.padding-bottom
+      %h2.margin-bottom
+        = "Features"
+      #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+        .panel.panel-notecard
+          .panel-body.panel-body-notecard{:id => "heading", :role => "tab"}
+            %a.collapsed.bold{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"}
+              = "Title (click me!)"
+          .panel-collapse.collapse{:id => "collapse", "aria-labelledby" => "heading", :role => "tabpanel"}
+            .panel-body.panel-body-notecard-alt
+              = "Quote"
+            .panel-body.panel-body-notecard
+              = "Book by Author"
+            .panel-body.panel-body-notecard-alt
+              = "Note:"

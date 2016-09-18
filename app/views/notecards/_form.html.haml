@@ -23,7 +23,7 @@
         .error-text.text-danger
           = show_errors(@notecard.book, :title)
     .panel-body.panel-body-input
-      = f.text_field :author_names, placeholder: 'ex: John Smith', class: 'textfield'
+      = f.text_field :author_names, placeholder: 'author (ex: John Smith)', class: 'textfield'
       - if !@notecard.errors.messages[:author_names].blank?
         .error-text.text-danger
           = @notecard.errors.messages[:author_names].join(', ')

@@ -12,7 +12,7 @@
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           .panel.panel-notecard
             .panel-body.panel-body-notecard{:id => "heading#{notecard.id}", :role => "tab"}
-              %a.collapsed{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
+              %a.collapsed.bold{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
                 = notecard.title
             .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
               .panel-body.panel-body-notecard-alt
@@ -22,8 +22,10 @@
                 - notecard.authors.each do |author|
                   = "#{author.first_name} #{author.last_name}"
               .panel-body.panel-body-notecard-alt
+                = "Note:"
                 = notecard.note
               .panel-body.panel-body-notecard
-                = link_to "edit", edit_notecard_path(notecard.id), class: 'links'
-                |
-                = link_to 'delete', notecard, method: :delete, data: {confirm: 'Are you sure?'}, :class => "links"
+                = link_to edit_notecard_path(notecard.id), class: "btn btn-outline" do
+                  %i.glyphicon.glyphicon-pencil
+                = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline" do
+                  %i.glyphicon.glyphicon-remove
