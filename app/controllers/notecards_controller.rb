@@ -16,6 +16,7 @@ class NotecardsController < ApplicationController
   def create
     @notecard = Notecard.new(notecard_params)
     @notecard.title = params[:notecard][:title]
+    assign_author
 
     if @notecard.save
       flash[:notice] = "Notecard added"
@@ -54,6 +55,12 @@ class NotecardsController < ApplicationController
 private
   def notecard_params
     Rails.logger.info "test"
-    params.require(:notecard).permit(:title, :quote, :note, :author_names, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
+    params.require(:notecard).permit(:title, :quote, :note,
+                                     :author_names, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
+  end
+
+  def assign_author
+    @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
+    @notecard.authors << @author
   end
 end

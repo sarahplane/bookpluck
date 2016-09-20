@@ -70,6 +70,7 @@ html, body {
   }
   &.panel-body-input {
     background-color: $panel-alt-color;
+    color: white;
     input {
       background-color: $panel-alt-color;
       border: none;
