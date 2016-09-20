@@ -8,8 +8,9 @@ RSpec.describe NotecardsController, type: :controller do
     end
   end
 
-  describe " GET #new" do
+  describe "GET #new" do
     it "assigns @notecard.book" do
+      # this is a model test, need to add a get statement to make it controller  it's a tautology
       @book = Book.create(title: 'one')
       @notecard = Notecard.create(title: 'one', quote: 'one', note: 'one')
       @notecard.book = @book
