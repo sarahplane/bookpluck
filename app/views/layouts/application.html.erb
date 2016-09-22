@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <p class="flash-message notice"><%= notice %></p>
+    <p class="flash-message alert"><%= alert %></p>
+
+    <nav class="nav">
+      <% if current_user %>
+        <%= "#{current_user.email} is signed in" %>
+        |
+        <%= link_to 'Signout', destroy_user_session_path, method: :delete %>
+      <% else %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>

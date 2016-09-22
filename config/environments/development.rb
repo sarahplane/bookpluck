@@ -1,4 +1,19 @@
 Rails.application.configure do
+
+  # Default Url Options for Devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Mailtrap: specify ActionMailer defaults for your development or staging servers.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => '686e275345f1cd',
+    :password => '26ceaa68df1e5b',
+    :address => 'mailtrap.io',
+    :domain => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
