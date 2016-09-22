@@ -18,7 +18,10 @@
               .panel-body.panel-body-notecard-alt
                 = notecard.quote
               .panel-body.panel-body-notecard
-                = "#{'"'}#{notecard.book.title}#{'"'} by"
+                = "Book Title:"
+                = "#{'"'}#{notecard.book.title}#{'"'}"
+              .panel-body.panel-body-notecard
+                = "Author Name(s):"
                 - notecard.authors.each do |author|
                   = "#{author.first_name} #{author.last_name}"
               .panel-body.panel-body-notecard-alt
