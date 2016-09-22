@@ -1,6 +1,7 @@
 class Notecard < ActiveRecord::Base
   attr_accessor :author_first_name
 
+  belongs_to :user, optional: true
   belongs_to :book
   accepts_nested_attributes_for :book
 

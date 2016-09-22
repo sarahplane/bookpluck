@@ -8,7 +8,7 @@
           = link_to "Home", root_path
 
     .col-md-8.padding-bottom
-      - @notecards.each do |notecard|
+      - @user.notecards.each do |notecard|
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           .panel.panel-notecard
             .panel-body.panel-body-notecard{:id => "heading#{notecard.id}", :role => "tab"}

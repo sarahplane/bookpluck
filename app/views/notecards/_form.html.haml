@@ -6,6 +6,8 @@
       = "There was a problem saving your notecard"
     %p
       = "Please address the highlighted #{"field".pluralize(@notecard.errors.count)} and resubmit"
+      = @notecard.errors.messages.join(', ')
+
 
 = form_for(notecard) do |f|
   .panel.panel-notecard

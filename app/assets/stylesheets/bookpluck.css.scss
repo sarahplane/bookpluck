@@ -44,8 +44,10 @@ html, body {
 }
 
 .panel-notecard {
-  border: solid 15px $panel-alt-color;
-  border-top: solid 5px $panel-alt-color;
+  padding: 5px 15px 15px 15px;
+  background-color: $panel-alt-color;
+  border: solid 1px $panel-alt-color;
+
 }
 .panel-title {
   a {
@@ -85,6 +87,7 @@ html, body {
   &.panel-body-notecard-alt {
     height: 200px;
     color: $secondary-color;
+    background-color: white;
   }
   &.panel-body-notecard {
     background-color: $panel-alt-color;
@@ -228,4 +231,8 @@ button {
   .close {
     color: $alert-danger
   }
+}
+
+.text-white {
+  color: white;
 }

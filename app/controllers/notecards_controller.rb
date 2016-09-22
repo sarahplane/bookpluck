@@ -1,5 +1,7 @@
 class NotecardsController < ApplicationController
+
   def index
+    @user = current_user
     @notecards = Notecard.all
   end
 
@@ -8,12 +10,14 @@ class NotecardsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @notecard = Notecard.new
     @book = Book.new
     @notecard.book = @book
   end
 
   def create
+    @user = current_user
     @notecard = Notecard.new(notecard_params)
     @notecard.title = params[:notecard][:title]
     assign_author
@@ -21,6 +25,7 @@ class NotecardsController < ApplicationController
     if @notecard.save
       flash[:notice] = "Notecard added"
       redirect_to notecards_path
+      @user.notecards << @notecard
     else
       render :new
     end
