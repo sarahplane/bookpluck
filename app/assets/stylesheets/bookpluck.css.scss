@@ -164,10 +164,17 @@ html, body {
   margin-top: 1em;
   text-transform: uppercase;
 
+
   a {
     text-decoration: none;
   }
 
+  &.btn-alt {
+    color: white;
+    a{
+      color: white;
+    }
+  }
   &.btn-outline {
     background-color: $panel-alt-color;
     border: solid 1px white;

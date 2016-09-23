@@ -10,9 +10,10 @@
   </head>
 
   <body>
-    <p class="flash-message notice"><%= notice %></p>
-    <p class="flash-message alert"><%= alert %></p>
-
+    <div style='list-style-type: none;'>
+    <% flash.each do |name, msg| %>
+      <div class="flash-<%= name %>"><%= msg %></div>
+    <% end %>
     <nav class="nav">
       <% if current_user %>
         <%= "#{current_user.email} is signed in" %>
