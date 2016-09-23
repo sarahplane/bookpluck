@@ -10,6 +10,8 @@ Rails.application.configure do
 
   first_inbox = JSON.parse(response)[0] # get first inbox
 
+  config.action_mailer.default_url_options = { :host => 'bookpluck.heroku.com' }
+  
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :user_name => '686e275345f1cd',
