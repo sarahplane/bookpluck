@@ -12,12 +12,12 @@ Rails.application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :user_name => '686e275345f1cd',
-    :password => '26ceaa68df1e5b',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+  :user_name => first_inbox['username'],
+  :password => first_inbox['password'],
+  :address => first_inbox['domain'],
+  :domain => first_inbox['domain'],
+  :port => first_inbox['smtp_ports'][0],
+  :authentication => :plain
   }
 
   # Code is not reloaded between requests.
