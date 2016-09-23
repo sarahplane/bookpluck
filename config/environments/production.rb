@@ -1,6 +1,25 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Heroku with Mailtrap: Code from https://devcenter.heroku.com/articles/mailtrap
+  require 'rubygems' if RUBY_VERSION < '1.9'
+  require 'rest_client'
+  require 'json'
+
+  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
+
+  first_inbox = JSON.parse(response)[0] # get first inbox
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :user_name => '686e275345f1cd',
+    :password => '26ceaa68df1e5b',
+    :address => 'mailtrap.io',
+    :domain => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
