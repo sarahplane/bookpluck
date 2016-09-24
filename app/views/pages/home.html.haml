@@ -1,16 +1,3 @@
-.container-fluid.home-color
-  .row
-    .col-md-2
-      = link_to root_path do
-        = image_tag("/assets/logo.png")
-    .col-md-4.col-md-offset-6
-      %ul.nav.nav-pills.margin-top.margin-bottom
-        %li{:role => "presentation"}
-          = link_to "about", '#about', class: "alt"
-        %li{:role => "presentation"}
-          = link_to "features", '#features', class: "alt"
-        %li.active{:role => "presentation"}
-          = link_to "log in", new_user_session_path, class: "alt"
 .jumbotron.tall.home-color
   .container.centered-text
     %h2.text-uppercase
@@ -22,10 +9,10 @@
 
 .container-fluid.tall.padding-top.home-color-alt#about
   .row
-    .col-md-8.col-md-offset-2.padding-bottom
+    .col-md-8.col-md-offset-2.padding-bottom.main-text
       %h2.margin-bottom
         = "About"
-      %p.lead
+      .lead
         = "BookPluck is a reading note organization app that"
         = "is based on the system developed by Paul Otlet"
         = "early in the 20th century. He discovered that"
@@ -41,18 +28,18 @@
 
 .container-fluid.tall.padding-top.home-color#features
   .row
-    .col-md-8.col-md-offset-2.padding-bottom
+    .col-md-8.col-md-offset-2.padding-bottom.main-text
       %h2.margin-bottom
         = "Features"
       #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
         .panel.panel-notecard
           .panel-body.panel-body-notecard{:id => "heading", :role => "tab"}
-            %a.collapsed.bold{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"}
+            %a.collapsed.panel-title-notecard{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"}
               = "Title (click me!)"
           .panel-collapse.collapse{:id => "collapse", "aria-labelledby" => "heading", :role => "tabpanel"}
-            .panel-body.panel-body-notecard-alt
+            .panel-body.panel-body-notecard-main
               = "Quote"
             .panel-body.panel-body-notecard
               = "Book by Author"
-            .panel-body.panel-body-notecard-alt
+            .panel-body.panel-body-notecard-main
               = "Note:"

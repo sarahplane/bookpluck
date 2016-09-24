@@ -1,0 +1,111 @@
+.panel-title-notecard {
+  font-size: 30px;
+}
+
+.panel-notecard {
+  background-color: white;
+  border: solid 1px black;
+  font-family: 'Noto Serif', serif;
+}
+
+.panel-body {
+  overflow: scroll;
+  &.panel-body-notecard-main {
+    height: 200px;
+    color: black;
+    border-top: solid 1px black;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: white;
+  }
+
+  &.panel-body-notecard {
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: white;
+    color: black;
+    a, a:hover, a:visited, a:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    &.panel-body-border-top {
+      border-top: solid 1px black;
+    }
+  }
+
+  &.panel-body-input-alt {
+    border-top: solid 1px black;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    textarea {
+      border: none;
+      text-indent: 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    input {
+      background-color: $primary-background-color;
+      border: none;
+      text-indent: 5px;
+      margin-bottom: 5px;
+      color: black;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &.panel-body-input {
+    background-color: $primary-background-color;
+    color: black;
+
+    input {
+      background-color: $primary-background-color;
+      border: none;
+      text-indent: 5px;
+      margin-bottom: 5px;
+      color: black;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .field_with_errors {
+    .input-box, input, textarea {
+      border: solid 1px $alert-danger;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.panel-body-input-title {
+  font-size: 30px;
+}
+
+::-webkit-input-placeholder {
+  color: darkgray;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: darkgray;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: darkgray;
+}
+
+:-ms-input-placeholder {
+   color: darkgray;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 0;
+}

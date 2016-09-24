@@ -32,11 +32,14 @@ class NotecardsController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @notecard = Notecard.find(params[:id])
   end
 
   def update
+    @user = current_user
     @notecard = Notecard.find(params[:id])
+    assign_author
 
     if @notecard.update(notecard_params)
       flash[:notice] = "notecard #{@notecard.title} edited"

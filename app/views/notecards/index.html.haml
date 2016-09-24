@@ -10,21 +10,26 @@
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           .panel.panel-notecard
             .panel-body.panel-body-notecard{:id => "heading#{notecard.id}", :role => "tab"}
-              %a.collapsed.bold{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
+              %a.collapsed.panel-title-notecard{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
                 = notecard.title
             .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
-              .panel-body.panel-body-notecard-alt
-                = notecard.quote
-              .panel-body.panel-body-notecard
+              .panel-body.panel-body-notecard-main
+                %strong
+                  = "Quote:"
+                %p.margin-left
+                  = notecard.quote
+              .panel-body.panel-body-notecard.panel-body-border-top
                 = "Book Title:"
                 = "#{'"'}#{notecard.book.title}#{'"'}"
               .panel-body.panel-body-notecard
                 = "Author Name(s):"
                 - notecard.authors.each do |author|
                   = "#{author.first_name} #{author.last_name}"
-              .panel-body.panel-body-notecard-alt
-                = "Note:"
-                = notecard.note
+              .panel-body.panel-body-notecard-main
+                %strong
+                  = "Note:"
+                %p.margin-left
+                  = notecard.note
               .panel-body.panel-body-notecard
                 = link_to edit_notecard_path(notecard.id), class: "btn btn-outline" do
                   %i.glyphicon.glyphicon-pencil

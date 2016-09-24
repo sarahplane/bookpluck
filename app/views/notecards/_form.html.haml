@@ -6,30 +6,31 @@
       = "There was a problem saving your notecard"
     %p
       = "Please address the highlighted #{"field".pluralize(@notecard.errors.count)} and resubmit"
-      = @notecard.errors.messages.join(', ')
-
 
 = form_for(notecard) do |f|
   .panel.panel-notecard
-    .panel-body.panel-body-input
-      = f.text_field :title, placeholder: 'title', class: 'textfield'
+    .panel-body.panel-body-input.panel-body-input-title
+      = f.text_field :title, placeholder: 'Title'
       .error-text.text-danger
-        = show_errors(@notecard, :title)
+      = show_errors(@notecard, :title)
     .panel-body.panel-body-input-alt
-      = f.text_area :quote, placeholder: 'quote'
+      = f.text_area :quote, placeholder: 'Quote'
       .error-text.text-danger
         = show_errors(@notecard, :quote)
     = f.fields_for :book do |t|
-      .panel-body.panel-body-input
-        = t.text_field :title, placeholder: 'book title', class: 'textfield'
+      .panel-body.panel-body-input-alt
+        = t.text_field :title, placeholder: 'Book Title', class: 'textfield'
         .error-text.text-danger
           = show_errors(@notecard.book, :title)
     .panel-body.panel-body-input
-      = "author:"
-      = text_field_tag :author_first_name, nil, placeholder: "first name"
-      = text_field_tag :author_last_name, nil, placeholder: "last name"
+      %strong
+        = "author:"
+      .margin-left
+        = text_field_tag :author_first_name, nil, placeholder: "First Name"
+      .margin-left
+        = text_field_tag :author_last_name, nil, placeholder: "Last Name"
 
     .panel-body.panel-body-input-alt
-      = f.text_area :note, placeholder: 'note'
+      = f.text_area :note, placeholder: 'Note'
 
   = f.submit 'submit', class: 'btn btn-default'

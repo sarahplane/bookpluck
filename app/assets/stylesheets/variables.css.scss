@@ -1,15 +1,17 @@
-$orange: #ffa500;
-$solarized-dark: #37474F;
-$solarized: #455A64;
-$light-gray: #f0f2f4;
-$white: #fff;
+$orange: #FB8C00;
+$gray-dark: #21252b;
+$gray-mid: #2c323c;
+$gray-light: #f0f2f4;
+$red: #F4511E;
 
-$primary-color: $solarized-dark;
-$secondary-color: $solarized;
-$accent-color: $light-gray;
-$theme-color: $orange;
-
-$alt-text: $white;
+$primary-color: lightgray;
+$secondary-color: white;
+$primary-background-color: white;
+$primary-text-color: black;
+$secondary-text-color: white;
+$theme-color: $gray-mid;
+$accent-color: $gray-light;
+$alert-danger: $red;
+$alt-text: white;
 $button-color: $theme-color;
-
-$notecard-width: 400px;
+$panel-alt-color: lightgray;

@@ -1,0 +1,78 @@
+.navbar {
+  color: black;
+  border-bottom: 1px solid black;
+
+  a {
+    color: black;
+  }
+
+  .navbar-brand, .navbar-brand:hover {
+    color: $secondary-text-color;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 45px;
+  }
+
+  .navbar-header {
+    margin: .5em 2em;
+  }
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:visited,
+.navbar-default .navbar-nav > li > a:active,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:visited,
+.navbar-default .navbar-nav > .open > a:active {
+    color: $secondary-text-color;
+    background-color: $theme-color;
+    padding-top: 2em;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $secondary-text-color;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: $theme-color;
+}
+
+.navbar-default {
+  background-color: $theme-color;
+}
+
+.h2-brand{
+  color: $secondary-text-color;
+  font-family: 'Cormorant Infant', serif;
+  font-size: 45px;
+}
+
+.nav-pills {
+  
+  li {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+
+    a, a:hover, a:focus, a:visited {
+      background-color: $secondary-color;
+      color: black;
+    }
+  }
+
+  li.active {
+    a, a:hover, a:focus, a:visited {
+      margin-bottom: 5px;
+      background-color: $theme-color;
+      text-transform: uppercase;
+      color: $secondary-text-color;
+      border: solid 1px black;
+    }
+  }
+}
+
+.nav-pills {
+  margin-bottom: 15px;
+}

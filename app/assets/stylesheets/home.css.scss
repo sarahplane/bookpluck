@@ -1,0 +1,41 @@
+.container, .container-fluid {
+  &.tall {
+    min-height: 45em;
+  }
+  &.alt-background {
+    background-color: #eeeeee;
+  }
+}
+
+.container-fluid-main {
+  background-color: $secondary-color;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 100%;
+  height: 100%;
+}
+
+.jumbotron {
+  &.tall {
+    min-height: 45em;
+  }
+}
+
+.lead {
+  line-height: 200%;
+}
+
+.home-color {
+  background-color: $secondary-color;
+  color: black;
+  border-bottom: 1px solid black;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.home-color-alt {
+  background-color: white;
+  border-bottom: 1px solid black;
+}
