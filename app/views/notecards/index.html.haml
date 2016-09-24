@@ -4,8 +4,6 @@
       %ul.nav.nav-pills.nav-stacked
         %li.active{:role => "presentation"}
           = link_to "Create Notecard", new_notecard_path
-        %li.outline{:role => "presentation"}
-          = link_to "Home", root_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|
