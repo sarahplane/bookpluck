@@ -10,18 +10,38 @@
   </head>
 
   <body>
-    <div style='list-style-type: none;'>
-    <% flash.each do |name, msg| %>
-      <div class="flash-<%= name %>"><%= msg %></div>
-    <% end %>
-    <nav class="nav">
+  <% if current_user %>
+    <nav class="navbar navbar-default navbar-static-top margin-bottom">
+    <div class="container-fluid">
       <% if current_user %>
         <%= "#{current_user.email} is signed in" %>
         |
         <%= link_to 'Signout', destroy_user_session_path, method: :delete %>
       <% else %>
       <% end %>
-    </nav>
-    <%= yield %>
-  </body>
+      </div>
+  </nav>
+  <% else %>
+  <% end %>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <% flash.each do |type, msg| %>
+        <% if type == "notice" %>
+          <div class="alert alert-success">
+        <% elsif type == "alert" %>
+          <div class="alert alert-danger">
+        <% else %>
+          <div class='alert alert-<%= "#{type}" %>'>
+        <% end %>
+        <a href="#" class="close" data-dismiss="alert">&#215;</a>
+        <ul>
+          <li>
+            <%= msg %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <%= yield %>
+</body>
 </html>
