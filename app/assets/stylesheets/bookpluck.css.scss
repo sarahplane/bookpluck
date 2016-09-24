@@ -5,15 +5,15 @@ $gray-light: #f0f2f4;
 $white: #fff;
 $red: #F4511E;
 
-$primary-color: $gray-mid;
-$secondary-color: $gray-dark;
+$primary-color: lightgray;
+$secondary-color: white;
 $accent-color: $gray-light;
-$theme-color: $orange;
+$theme-color: #1565C0;
 $alert-danger: $red;
 
 $alt-text: $white;
 $button-color: $theme-color;
-$panel-alt-color: $gray-mid;
+$panel-alt-color: lightgray;
 
 html, body {
   min-height: 100%;
@@ -47,11 +47,11 @@ html, body {
   padding: 5px 15px 15px 15px;
   background-color: $panel-alt-color;
   border: solid 1px $panel-alt-color;
-
 }
 .panel-title {
   a {
     text-decoration: none;
+    color: darkgray;
   }
 }
 
@@ -72,13 +72,13 @@ html, body {
   }
   &.panel-body-input {
     background-color: $panel-alt-color;
-    color: white;
+    color: darkgray;
     input {
       background-color: $panel-alt-color;
       border: none;
       text-indent: 5px;
       margin-bottom: 5px;
-      color: white;
+      color: darkgray;
       &:focus {
         outline: none;
       }
@@ -86,14 +86,14 @@ html, body {
   }
   &.panel-body-notecard-alt {
     height: 200px;
-    color: $secondary-color;
+    color: darkgray;
     background-color: white;
   }
   &.panel-body-notecard {
     background-color: $panel-alt-color;
-    color: #CFD8DC;
+    color: darkgray;
     a, a:hover, a:visited, a:focus {
-      color: white;
+      color: darkgray;
       text-decoration: none;
     }
   }
@@ -117,9 +117,9 @@ html, body {
   li.active {
     a, a:hover, a:focus, a:visited {
       margin-bottom: 5px;
-      background-color: $secondary-color;
+      background-color: $theme-color;
       text-transform: uppercase;
-      color: $theme-color;
+      color: white;
       border: solid 1px $theme-color;
     }
   }
@@ -206,7 +206,7 @@ html, body {
 }
 
 .home-color-alt {
-  background-color: lightgray;
+  background-color: white;
 }
 
 .glyphicon-black {
