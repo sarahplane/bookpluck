@@ -42,7 +42,7 @@ class NotecardsController < ApplicationController
     assign_author
 
     if @notecard.update(notecard_params)
-      flash[:notice] = "notecard #{@notecard.title} edited"
+      flash[:notice] = "Notecard #{'"'}#{@notecard.title}#{'"'} Edited"
       redirect_to notecards_path
     else
       render :edit
@@ -55,7 +55,7 @@ class NotecardsController < ApplicationController
     if @notecard.destroy
       flash[:notice] = "notecard #{old_title} deleted"
     else
-      flash.now[:alert] = "notecard #{@notecard.title} NOT deleted, please try again"
+      flash.now[:alert] = "notecard #{'"'}#{@notecard.title}#{'"'} NOT deleted, please try again"
     end
     redirect_to notecards_path
   end

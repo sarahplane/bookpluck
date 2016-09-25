@@ -1,9 +1,9 @@
 .container-fluid.container-fluid-main
   .row
     .col-md-2
-      %ul.nav.nav-pills.nav-stacked
+      %ul.nav.nav-pills.nav-stacked.margin-left
         %li.active{:role => "presentation"}
-          = link_to "Create Notecard", new_notecard_path
+          = link_to "New Notecard", new_notecard_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|

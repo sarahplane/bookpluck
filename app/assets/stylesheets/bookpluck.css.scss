@@ -7,6 +7,27 @@ html, body {
   font-size: 14px;
 }
 
+.alert {
+  color: white;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 2em;
+  align-text: center;
+
+  .close {
+    color: white;
+    text-shadow: none;
+  }
+}
+
+.alert-success {
+  background-color: #2E7D32;
+}
+
+.alert-danger {
+  background-color: #C62828;
+}
+
 .main-text {
   font-family: 'Noto Serif', serif;
 }
@@ -38,22 +59,6 @@ html, body {
   color: $alert-danger;
 }
 
-.alert-danger {
-  background-color: $secondary-color;
-  border: solid 1px $alert-danger;
-  color: $alert-danger;
-
-  .close {
-    text-shadow: none;
-  }
-}
-
-.alert-dismissable, .alert-dismissible {
-  .close {
-    color: $alert-danger;
-  }
-}
-
 .glyphicon-black {
   color: $secondary-color;
 }
@@ -69,6 +74,7 @@ textarea {
 }
 
 button {
+
   .close {
     color: $alert-danger
   }
@@ -76,13 +82,6 @@ button {
 
 .text-white {
   color: white;
-}
-
-.box {
-  width: auto;
-  display: inline-block;
-  border: 1px solid black;
-  padding: 30px;
 }
 
 .inline {
@@ -103,6 +102,10 @@ button {
   margin-left: 1em;
 }
 
+.margin-right {
+  margin-right: 1em;
+}
+
 .margin-bottom {
   margin-bottom: 1em;
 }
@@ -118,3 +121,4 @@ button {
 @import "navigation";
 @import "home";
 @import "notecard";
+@import "log";

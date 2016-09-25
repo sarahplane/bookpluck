@@ -1,23 +1,20 @@
 .container-fluid.container-fluid-main
   .row
     .col-md-10.col-md-offset-1.text-center
-      .box
-        %h2 Log in
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .field
-            = f.label :email
-            %br/
-            = f.email_field :email, autofocus: true
-          .field
-            = f.label :password
-            %br/
-            = f.password_field :password, autocomplete: "off"
-          - if devise_mapping.rememberable?
-            .field
-              = f.check_box :remember_me
-              = f.label :remember_me
-          .actions.btn.btn-outline
-            = f.submit "Log in"
-          .btn.btn-outline
-            = link_to "Back", root_path
-        = render "devise/shared/links"
+      .panel.panel-log.main-text
+        .panel-body.margin-bottom
+          %h2 Sign in
+        .panel-body
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .field.margin-bottom
+              = f.email_field :email, autofocus: true, placeholder: "email"
+            .field.margin-bottom
+              = f.password_field :password, autocomplete: "off", placeholder: "password"
+            - if devise_mapping.rememberable?
+              .field
+                = f.check_box :remember_me
+                = f.label :remember_me
+            .actions.btn.btn-outline
+              = f.submit "Log in"
+        .panel-body
+          = render "devise/shared/links"

@@ -35,11 +35,17 @@
         .panel.panel-notecard
           .panel-body.panel-body-notecard{:id => "heading", :role => "tab"}
             %a.collapsed.panel-title-notecard{"aria-controls" => "collapse", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse", :role => "button"}
-              = "Title (click me!)"
+              = "Vannevar Introduces the Memex in 1945"
           .panel-collapse.collapse{:id => "collapse", "aria-labelledby" => "heading", :role => "tabpanel"}
             .panel-body.panel-body-notecard-main
-              = "Quote"
-            .panel-body.panel-body-notecard
-              = "Book by Author"
+              = "Consider a future device for individual use, which is a sort of"
+              = "mechanized private file and library. It needs a name, and to coin"
+              = "one at random, #{'"'}memex#{'"'} will do. A memex is a device in"
+              = "which an individual stores all his books, records, and communications,"
+              = "and which is mechanized so that it may be consulted with exceeding"
+              = "speed and flexibility. It is an enlarged intimate supplement to his memory."
+            .panel-body.panel-body-notecard.panel-body-border-top
+              = "#{'"'}As We May Think#{'"'} by Vannevar Bush"
             .panel-body.panel-body-notecard-main
-              = "Note:"
+              = "Note: Vannevar Bush's other remarkable predictions include text-to-speech"
+              = "and crowdsourced encyclopedias."
