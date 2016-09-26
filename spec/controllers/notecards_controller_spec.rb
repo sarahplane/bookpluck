@@ -25,7 +25,6 @@ RSpec.describe NotecardsController, type: :controller do
 
   describe "GET #new" do
     it "assigns @notecard.book" do
-      # this is a model test, need to add a get statement to make it controller  it's a tautology
       get :new
       expect(@notecard.book).to eq(@book)
     end
@@ -34,8 +33,12 @@ RSpec.describe NotecardsController, type: :controller do
   describe "POST #create" do
     it "responds with a 200 status" do
       post :create, notecard: {title: 'one', quote: 'one', note: 'one'}
-      id = assigns(:notecard)
       expect(response.status).to eq(200)
+    end
+
+    it "redirects notecards index" do
+      post :create, notecard: {title: 'two', quote: 'one', note: 'one', book: @book}
+      expect(response).to redirect_to(notecards_path)
     end
   end
 
