@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle margin-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= "#{current_user.email}" %><span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle margin-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to 'Signout', destroy_user_session_path, method: :delete %></li>
               <li><%= link_to 'Preferences', edit_user_registration_path %></li>
