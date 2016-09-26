@@ -1,23 +1,21 @@
 class NotecardsController < ApplicationController
+  before_action :set_user, only: [:index, :new, :create, :edit, :update]
+  before_action :set_notecard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = current_user
     @notecards = Notecard.all
   end
 
   def show
-    @notecard = Notecard.find(params[:id])
   end
 
   def new
-    @user = current_user
     @notecard = Notecard.new
     @book = Book.new
     @notecard.book = @book
   end
 
   def create
-    @user = current_user
     @notecard = Notecard.new(notecard_params)
     @notecard.title = params[:notecard][:title]
     assign_author
@@ -32,13 +30,9 @@ class NotecardsController < ApplicationController
   end
 
   def edit
-    @user = current_user
-    @notecard = Notecard.find(params[:id])
   end
 
   def update
-    @user = current_user
-    @notecard = Notecard.find(params[:id])
     assign_author
 
     if @notecard.update(notecard_params)
@@ -50,7 +44,6 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
-    @notecard = Notecard.find(params[:id])
     old_title = @notecard.title
     if @notecard.destroy
       flash[:notice] = "notecard #{old_title} deleted"
@@ -74,5 +67,13 @@ private
       @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
       @notecard.authors << @author
     end
+  end
+
+  def set_user
+    @user = current_user
+  end
+
+  def set_notecard
+    @notecard = Notecard.find(params[:id])
   end
 end

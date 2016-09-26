@@ -11,9 +11,4 @@ RSpec.describe Notecard, type: :model do
       expect(book.valid?).to eq(true)
     end
   end
-
-  # rewritten with shoulda-matchers gem
-  describe "#title" do
-    it { is_expected.to validate_presence_of(:title) }
-  end
 end

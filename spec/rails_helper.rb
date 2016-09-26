@@ -30,7 +30,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
-    with.test_framework :rspec  
+    with.test_framework :rspec
 
     with.library :rails
   end
@@ -41,6 +41,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryGirl::Syntax::Methods
 
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
