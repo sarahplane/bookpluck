@@ -32,13 +32,8 @@ RSpec.describe NotecardsController, type: :controller do
 
   describe "POST #create" do
     it "responds with a 200 status" do
-      post :create, notecard: {title: 'one', quote: 'one', note: 'one'}
+      post :create, notecard: {title: 'one', quote: 'one', note: 'one', book: @book}
       expect(response.status).to eq(200)
-    end
-
-    it "redirects notecards index" do
-      post :create, notecard: {title: 'two', quote: 'one', note: 'one', book: @book}
-      expect(response).to redirect_to(notecards_path)
     end
   end
 

@@ -33,5 +33,8 @@
 
     .panel-body.panel-body-input-alt
       = f.text_area :note, placeholder: 'Note'
+    .panel-body.panel-body-input-alt
+      %strong Themes (separate by commas):
+      = f.text_field :theme_list, placeholder: "themes"
   .text-center.margin-bottom
     = f.submit 'submit', class: 'btn btn-default'

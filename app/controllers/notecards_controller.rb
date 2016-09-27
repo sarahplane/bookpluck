@@ -55,18 +55,13 @@ class NotecardsController < ApplicationController
 
 private
   def notecard_params
-    Rails.logger.info "test"
-    params.require(:notecard).permit(:title, :quote, :note,
-                                     :author_names, book_attributes: [:title, :publisher, :editor, :isbn, :year_published, :timestamp])
+    params.require(:notecard).permit(:title, :quote, :note, :theme_list,
+                                     :author_names, book_attributes: [:title, :timestamp])
   end
 
   def assign_author
-    if params[:author_first_name] == ""
-      @notecard.errors.add(:author_first_name, "must be present")
-    else
-      @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
-      @notecard.authors << @author
-    end
+    @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
+    @notecard.authors << @author
   end
 
   def set_user

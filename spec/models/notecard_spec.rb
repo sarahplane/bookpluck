@@ -28,4 +28,15 @@ RSpec.describe Notecard, type: :model do
       expect(notecard.valid?).to eq(false)
     end
   end
+
+  describe "theme_list" do
+
+    let(:book) { Book.create(title: "Some Title")}
+    let(:notecard) { Notecard.create(title: "Some Title", quote: "Some Quote", book: book)}
+
+    it "takes a string and creates themes" do
+      notecard.theme_list=("theme1, theme2, theme3")
+      expect(notecard.themes.pluck(:name)).to eq(["theme1", "theme2", "theme3"])
+    end
+  end
 end

@@ -31,6 +31,11 @@
                 %p.margin-left
                   = notecard.note
               .panel-body.panel-body-notecard
+                %strong
+                  = "Themes:"
+                - notecard.themes.sort_by{|t| t.name}.each do |theme|
+                  = theme.name
+              .panel-body.panel-body-notecard
                 = link_to edit_notecard_path(notecard.id), class: "btn btn-outline" do
                   %i.glyphicon.glyphicon-pencil
                 = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline" do

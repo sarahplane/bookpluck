@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922162733) do
+ActiveRecord::Schema.define(version: 20160926220254) do
 
   create_table "authorings", force: :cascade do |t|
     t.integer  "author_id"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 20160922162733) do
     t.datetime "updated_at",  null: false
     t.index ["author_id"], name: "index_quotations_on_author_id"
     t.index ["notecard_id"], name: "index_quotations_on_notecard_id"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "themings", force: :cascade do |t|
+    t.integer  "notecard_id"
+    t.integer  "theme_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["notecard_id"], name: "index_themings_on_notecard_id"
+    t.index ["theme_id"], name: "index_themings_on_theme_id"
   end
 
   create_table "users", force: :cascade do |t|
