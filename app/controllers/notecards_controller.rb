@@ -61,7 +61,9 @@ private
 
   def assign_author
     @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
-    @notecard.authors << @author
+    author_array = []
+    author_array << @author
+    @notecard.authors = author_array
   end
 
   def set_user

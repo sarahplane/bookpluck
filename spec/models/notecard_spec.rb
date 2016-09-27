@@ -23,7 +23,7 @@ RSpec.describe Notecard, type: :model do
       expect(notecard.errors[:quote]).to include("can't be blank")
     end
 
-    it "is note valid with a quote longer than 1500" do
+    it "is not valid with a quote longer than 1500" do
       notecard.quote = "a" * 1501
       expect(notecard.valid?).to eq(false)
     end

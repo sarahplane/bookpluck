@@ -55,6 +55,7 @@
     input {
       background-color: $primary-background-color;
       border: none;
+      border-bottom: 2px solid darkgray;
       text-indent: 5px;
       margin-bottom: 5px;
       color: black;
@@ -75,6 +76,7 @@
       text-indent: 5px;
       margin-bottom: 5px;
       color: black;
+      border-bottom: 2px solid darkgray;
 
       &:focus {
         outline: none;

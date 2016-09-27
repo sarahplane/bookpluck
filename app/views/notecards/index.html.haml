@@ -19,10 +19,12 @@
                 %p.margin-left
                   = notecard.quote
               .panel-body.panel-body-notecard.panel-body-border-top
-                = "Book Title:"
+                %strong
+                  = "Book Title:"
                 = "#{'"'}#{notecard.book.title}#{'"'}"
               .panel-body.panel-body-notecard
-                = "Author Name(s):"
+                %strong
+                  = "Author Name:"
                 - notecard.authors.each do |author|
                   = "#{author.first_name} #{author.last_name}"
               .panel-body.panel-body-notecard-main
