@@ -37,9 +37,9 @@ RSpec.describe NotecardsController, type: :controller do
     end
   end
 
-  describe "PATCH #update" do
+  describe "PUT #update" do
     it "updates the title" do
-      patch :update, :id => @notecard.id, notecard: {title: 'two'}
+      put :update, :id => @notecard.id, notecard: {title: 'two'}
       @notecard.reload
       expect(@notecard.title).to eq('two')
     end

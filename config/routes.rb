@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  controller :pages do
-    get :home
+  resources :pages do
+    collection do
+      get :home
+    end
   end
 
 
