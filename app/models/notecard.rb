@@ -26,4 +26,12 @@ class Notecard < ActiveRecord::Base
     end
     self.themes = new_or_found_themes
   end
+
+  def theme_names
+    self.themes.pluck(:name).join(", ")
+  end
+
+  def author_name(attribute)
+    self.authors.pluck(attribute)
+  end
 end

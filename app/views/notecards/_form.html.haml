@@ -28,15 +28,15 @@
         = "Author"
       .margin-left
         = "First name:"
-        = text_field_tag :author_first_name, @notecard.authors.pluck(:first_name)
+        = text_field_tag :author_first_name, @notecard.author_name(:first_name)
       .margin-left
         = "Last name:"
-        = text_field_tag :author_last_name, @notecard.authors.pluck(:last_name)
+        = text_field_tag :author_last_name, @notecard.author_name(:last_name)
 
     .panel-body.panel-body-input-alt
       = f.text_area :note, placeholder: 'Note'
     .panel-body.panel-body-input-alt
       %strong Themes (separate by commas):
-      = f.text_field :theme_list, value: f.object.themes.pluck(:name).join(", "), placeholder: "ex: one, two, three"
+      = f.text_field :theme_list, value: f.object.theme_names, placeholder: "ex: one, two, three"
   .text-center.margin-bottom
     = f.submit 'submit', class: 'btn btn-default'
