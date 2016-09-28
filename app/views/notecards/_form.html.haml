@@ -28,10 +28,11 @@
         = "Author"
       .margin-left
         = "First name:"
-        = text_field_tag :author_first_name, @notecard.author_name(:first_name)
+        = text_field_tag :author_first_name, @notecard.author_name(:first_name), placeholder: "____________________"
       .margin-left
         = "Last name:"
-        = text_field_tag :author_last_name, @notecard.author_name(:last_name)
+        = text_field_tag :author_last_name, @notecard.author_name(:last_name), placeholder: "____________________"
+      .margin-left
 
     .panel-body.panel-body-input-alt
       = f.text_area :note, placeholder: 'Note'
