@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   devise_for :users
   resources :notecards
   resources :books

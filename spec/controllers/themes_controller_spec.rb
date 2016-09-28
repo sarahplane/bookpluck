@@ -9,9 +9,7 @@ RSpec.describe ThemesController, type: :controller do
     @user.confirm
     @user.save
     sign_in @user
-  end
 
-  before(:each) do
     @book = Book.create(title: 'Book')
     @notecard = Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: @book)
     @theme = Theme.create(name: 'Theme')

@@ -54,7 +54,7 @@
     }
 
     input {
-      background-color: $primary-background-color;
+      background-color: $background-color-primary;
       border: none;
       text-indent: 5px;
       margin-bottom: 5px;
@@ -67,11 +67,11 @@
   }
 
   &.panel-body-input {
-    background-color: $primary-background-color;
+    background-color: $background-color-primary;
     color: black;
 
     input {
-      background-color: $primary-background-color;
+      background-color: $background-color-primary;
       border: none;
       text-indent: 5px;
       margin-bottom: 5px;

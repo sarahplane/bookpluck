@@ -17,7 +17,6 @@ class NotecardsController < ApplicationController
 
   def create
     @notecard = Notecard.new(notecard_params)
-    @notecard.title = params[:notecard][:title]
     assign_author
 
     if @notecard.save

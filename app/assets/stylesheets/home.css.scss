@@ -8,7 +8,7 @@
 }
 
 .container-fluid-main {
-  background-color: $secondary-color;
+  background-color: $background-color-primary;
   padding-top: 50px;
   padding-bottom: 50px;
   min-height: 100%;
@@ -26,7 +26,7 @@
 }
 
 .home-color {
-  background-color: $secondary-color;
+  background-color: $background-color-primary;
   color: black;
   border-bottom: 1px solid black;
   a {

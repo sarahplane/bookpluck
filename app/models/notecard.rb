@@ -13,7 +13,6 @@ class Notecard < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :quote, presence: true, length: { maximum: 1500,
     too_long: "1500 characters is the maximum allowed"}
-    # customizes the error message
 
   def theme_list
     themes.pluck(:name).join(", ")
