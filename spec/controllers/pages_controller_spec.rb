@@ -4,6 +4,7 @@ RSpec.describe PagesController, type: :controller do
   describe "GET #home" do
     it "responds successfully" do
       get :home
+
       expect(response).to be_success
     end
 
@@ -13,6 +14,7 @@ RSpec.describe PagesController, type: :controller do
       @user.save
       sign_in @user
       get :home
+      
       expect(response).to redirect_to(notecards_path)
     end
   end

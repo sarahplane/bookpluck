@@ -16,7 +16,7 @@ class Notecard < ActiveRecord::Base
     # customizes the error message
 
   def theme_list
-    themes.join(', ')
+    themes.pluck(:name).join(", ")
   end
 
   def theme_list=(theme_list)
@@ -25,10 +25,6 @@ class Notecard < ActiveRecord::Base
       Theme.find_or_create_by(name: name)
     end
     self.themes = new_or_found_themes
-  end
-
-  def theme_names
-    self.themes.pluck(:name).join(", ")
   end
 
   def author_name(attribute)

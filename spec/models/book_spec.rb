@@ -6,8 +6,8 @@ RSpec.describe Notecard, type: :model do
       book = Book.create(title: nil)
       expect(book.valid?).to eq(false)
       expect(book.errors[:title]).to include("can't be blank")
-
       book.title = "Some Title"
+      
       expect(book.valid?).to eq(true)
     end
   end
