@@ -39,4 +39,27 @@ RSpec.describe Notecard, type: :model do
       expect(notecard.themes.pluck(:name)).to eq(["theme1", "theme2", "theme3"])
     end
   end
+
+  describe "theme_names" do
+    let(:book) { Book.create(title: "Some Title")}
+    let(:notecard) { Notecard.create(title: "Some Title", quote: "Some Quote", book: book)}
+
+    it "returns the theme names as a string separated by commas" do
+      notecard.theme_list=("theme1, theme2, theme3")
+      expect(notecard.theme_names).to eq("theme1, theme2, theme3")
+    end
+  end
+
+  describe "author_name" do
+    let(:book) { Book.create(title: "Some Title")}
+    let(:notecard) { Notecard.create(title: "Some Title", quote: "Some Quote", book: book)}
+
+    it "returns the author's first name" do
+      @author = Author.create(first_name: "First", last_name: "Last")
+      author_array = []
+      author_array << @author
+      notecard.authors = author_array
+      expect(notecard.author_name(:first_name)).to eq(["First"])
+    end
+  end
 end
