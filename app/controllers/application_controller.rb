@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   protect_from_forgery with: :exception, prepend: true
-  after_filter :store_action
+  after_action :store_action
 
   def store_action
     return unless request.get?
