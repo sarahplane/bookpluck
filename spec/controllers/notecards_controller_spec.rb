@@ -35,6 +35,11 @@ RSpec.describe NotecardsController, type: :controller do
       post :create, notecard: {title: 'one', quote: 'one', note: 'one', book: @book}
       expect(response.status).to eq(200)
     end
+
+    it "adds one article" do
+      post :create, notecard: {title: 'one', quote: 'one', note: 'one', book: @book}
+      expect(Notecard.count).to eq(1)
+    end
   end
 
   describe "PUT #update" do
@@ -49,6 +54,11 @@ RSpec.describe NotecardsController, type: :controller do
     it "redirects to the index page" do
       delete :destroy, id: @notecard.id
       expect(response).to redirect_to notecards_path
+    end
+
+    it "removes the notecard" do
+      delete :destroy, id: @notecard.id
+      expect(Notecard.count).to eq(0)
     end
   end
 end

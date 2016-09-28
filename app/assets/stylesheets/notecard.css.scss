@@ -46,6 +46,7 @@
     textarea {
       border: none;
       text-indent: 5px;
+      color: $input-text-color;
 
       &:focus {
         outline: none;
@@ -55,10 +56,9 @@
     input {
       background-color: $primary-background-color;
       border: none;
-      border-bottom: 2px solid darkgray;
       text-indent: 5px;
       margin-bottom: 5px;
-      color: black;
+      color: $input-text-color;
 
       &:focus {
         outline: none;
@@ -75,8 +75,7 @@
       border: none;
       text-indent: 5px;
       margin-bottom: 5px;
-      color: black;
-      border-bottom: 2px solid darkgray;
+      color: $input-text-color;
 
       &:focus {
         outline: none;
