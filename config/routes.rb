@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :notecards
+  resources :notecards do
+    get "download_txt"
+    get "download_html"
+  end
+
   resources :books
   resources :themes, only:(:show)
 

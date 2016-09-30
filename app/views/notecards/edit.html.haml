@@ -4,5 +4,9 @@
       %ul.nav.nav-pills.nav-stacked.margin-left
         %li.active{:role => "presentation"}
           = link_to "Home", notecards_path
+        %li.active{:role => "presentation"}
+          = link_to "Download txt", notecard_download_txt_path(@notecard)
+        %li.active{:role => "presentation"}
+          = link_to "Download html", notecard_download_html_path(@notecard)
     .col-md-8
       = render partial: 'form', locals: {notecard: @notecard}

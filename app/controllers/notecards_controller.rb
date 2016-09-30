@@ -52,7 +52,26 @@ class NotecardsController < ApplicationController
     redirect_to notecards_path
   end
 
+  def download_txt
+    @notecard = Notecard.find(params[:notecard_id])
+    data = "TITLE:\r======\r#{@notecard.title}\r\r"
+    data << "QUOTE:\r======\r#{@notecard.quote}\r"
+    data << "BOOK:\r=====\r#{@notecard.book.title}\r\r"
+    data << "NOTE:\r=====\r#{@notecard.note}"
+    send_data( data, :filename => "my_file.txt" )
+  end
+
+  def download_html
+    @notecard = Notecard.find(params[:notecard_id])
+    data = "<strong>TITLE:</strong>\r<p>#{@notecard.title}</p>\r\r"
+    data << "<strong>QUOTE:</strong>\r<p>#{@notecard.quote}</p>\r"
+    data << "<strong>BOOK:</strong>\r<p>#{@notecard.book.title}</p>\r\r"
+    data << "<strong>NOTE:</strong>\r<p>#{@notecard.note}</p>"
+    send_data( data, :filename => "my_file.html" )
+  end
+
 private
+
   def notecard_params
     params.require(:notecard).permit(:title, :quote, :note, :theme_list,
                                      :author_names, book_attributes: [:title, :timestamp])
