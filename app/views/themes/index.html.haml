@@ -1,0 +1,14 @@
+.container-fluid.container-fluid-main
+  .row
+    .col-md-12.text-center.margin-bottom
+      .h1
+        = "Themes"
+  .row
+    .col-md-2
+      %ul.nav.nav-pills.nav-stacked.margin-left
+        %li.active{:role => "presentation"}
+          = link_to "Home", notecards_path
+    .col-md-8.padding-bottom
+      - @themes.alphabetized.each do |theme|
+        .btn.btn-theme
+          = link_to "#{theme.name}", theme_path(theme)

@@ -4,6 +4,8 @@
       %ul.nav.nav-pills.nav-stacked.margin-left
         %li.active{:role => "presentation"}
           = link_to "New Notecard", new_notecard_path
+        %li.active{:role => "presentation"}
+          = link_to "Theme List", themes_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|

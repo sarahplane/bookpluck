@@ -53,6 +53,19 @@ html, body {
     border: 1px solid black;
     border-radius: 2px;
   }
+
+  &.btn-theme {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: .5em 1em;
+    color: black;
+    margin: .5em;
+
+    a {
+      color: $text-color-primary;
+    }
+  }
 }
 
 .text-danger {

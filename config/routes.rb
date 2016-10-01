@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :books
-  resources :themes, only:(:show)
+  resources :themes, only:[:index, :show]
 
   root 'pages#home'
 end
