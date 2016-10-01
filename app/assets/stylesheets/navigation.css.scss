@@ -51,10 +51,11 @@
 }
 
 .nav-pills {
-  
+
   li {
     text-transform: uppercase;
     margin-bottom: 5px;
+    text-align: center;
 
     a, a:hover, a:focus, a:visited {
       background-color: $background-color-primary;
