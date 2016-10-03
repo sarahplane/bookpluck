@@ -8,8 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :notecards do
-    get "download_txt"
-    get "download_html"
+    get "download"
   end
 
   resources :books

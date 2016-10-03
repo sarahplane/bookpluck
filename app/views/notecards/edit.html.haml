@@ -8,8 +8,8 @@
           %strong
             = "Downloads"
         %li.active{:role => "presentation"}
-          = link_to "txt", notecard_download_txt_path(@notecard)
+          = link_to "txt", notecard_download_path(notecard_id: @notecard.id, type: "txt")
         %li.active{:role => "presentation"}
-          = link_to "html", notecard_download_html_path(@notecard)
+          = link_to "html", notecard_download_path(notecard_id: @notecard.id, type: "html")
     .col-md-8
       = render partial: 'form', locals: {notecard: @notecard}

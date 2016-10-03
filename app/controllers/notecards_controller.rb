@@ -52,22 +52,24 @@ class NotecardsController < ApplicationController
     redirect_to notecards_path
   end
 
-  def download_txt
+  def download
     @notecard = Notecard.find(params[:notecard_id])
-    data = "TITLE:\r======\r#{@notecard.title}\r\r"
-    data << "QUOTE:\r======\r#{@notecard.quote}\r"
-    data << "BOOK:\r=====\r#{@notecard.book.title}\r\r"
-    data << "NOTE:\r=====\r#{@notecard.note}"
-    send_data( data, :filename => "my_file.txt" )
-  end
-
-  def download_html
-    @notecard = Notecard.find(params[:notecard_id])
-    data = "<strong>TITLE:</strong>\r<p>#{@notecard.title}</p>\r\r"
-    data << "<strong>QUOTE:</strong>\r<p>#{@notecard.quote}</p>\r"
-    data << "<strong>BOOK:</strong>\r<p>#{@notecard.book.title}</p>\r\r"
-    data << "<strong>NOTE:</strong>\r<p>#{@notecard.note}</p>"
-    send_data( data, :filename => "my_file.html" )
+    filetitle = @notecard.title.downcase.tr(" ", "_")
+    # add max characters for notecard title
+    case params[:type]
+    when "txt"
+      data = "TITLE:\r======\r#{@notecard.title}\r\r"
+      data << "QUOTE:\r======\r#{@notecard.quote}\r"
+      data << "BOOK:\r=====\r#{@notecard.book.title}\r\r"
+      data << "NOTE:\r=====\r#{@notecard.note}"
+      send_data( data, :filename => "#{filetitle}.txt" )
+    when "html"
+      data = "<strong>TITLE:</strong>\r<p>#{@notecard.title}</p>\r\r"
+      data << "<strong>QUOTE:</strong>\r<p>#{@notecard.quote}</p>\r"
+      data << "<strong>BOOK:</strong>\r<p>#{@notecard.book.title}</p>\r\r"
+      data << "<strong>NOTE:</strong>\r<p>#{@notecard.note}</p>"
+      send_data( data, :filename => "#{filetitle}.html" )
+    end
   end
 
 private
@@ -77,18 +79,18 @@ private
                                      :author_names, book_attributes: [:title, :timestamp])
   end
 
-  def assign_author
-    @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
-    author_array = []
-    author_array << @author
-    @notecard.authors = author_array
-  end
-
   def set_user
     @user = current_user
   end
 
   def set_notecard
     @notecard = Notecard.find(params[:id])
+  end
+
+  def assign_author
+    @author = Author.find_or_create_by(first_name: params[:author_first_name], last_name: params[:author_last_name])
+    author_array = []
+    author_array << @author
+    @notecard.authors = author_array
   end
 end
