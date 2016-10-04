@@ -6,4 +6,8 @@ module ApplicationHelper
      end
    end
  end
+
+ def organize_themes(theme_collection, matcher)
+   theme_collection.select{ |theme| theme.name[0] == matcher }.sort_by{ |theme| theme.name.downcase }
+ end
 end

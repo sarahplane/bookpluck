@@ -1,5 +1,15 @@
 @import "variables";
 
+.letter-heading {
+  font-weight: bold;
+  font-size: 30px;
+  color: darkgray;
+}
+
+.row-border-bottom {
+  border-bottom: 1px solid darkgray;
+}
+
 html, body {
   min-height: 100%;
   height: 100%;
