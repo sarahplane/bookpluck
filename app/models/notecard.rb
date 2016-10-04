@@ -14,6 +14,8 @@ class Notecard < ActiveRecord::Base
   validates :quote, presence: true, length: { maximum: 1500,
     too_long: "1500 characters is the maximum allowed"}
 
+  attr_accessor :data
+
   def theme_list
     themes.pluck(:name).join(", ")
   end
@@ -28,5 +30,20 @@ class Notecard < ActiveRecord::Base
 
   def author_name(attribute)
     self.authors.pluck(attribute)
+  end
+
+  def build_download_data(file_type)
+    case file_type
+    when "txt"
+      data = "TITLE:\r======\r#{self.title}\r\r"
+      data << "QUOTE:\r======\r#{self.quote}\r"
+      data << "BOOK:\r=====\r#{self.book.title}\r\r"
+      data << "NOTE:\r=====\r#{self.note}"
+    when "html"
+      data = "<strong>TITLE:</strong>\r<p>#{self.title}</p>\r\r"
+      data << "<strong>QUOTE:</strong>\r<p>#{self.quote}</p>\r"
+      data << "<strong>BOOK:</strong>\r<p>#{self.book.title}</p>\r\r"
+      data << "<strong>NOTE:</strong>\r<p>#{self.note}</p>"
+    end
   end
 end
