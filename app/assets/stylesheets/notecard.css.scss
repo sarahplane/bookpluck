@@ -4,6 +4,7 @@
 
 .panel-title-notecard {
   font-size: 30px;
+  width: 100%;
 }
 
 .panel-notecard {
@@ -93,6 +94,11 @@
 
 .panel-body-input-title {
   font-size: 30px;
+  width: 100%;
+
+  input {
+    width: 100%
+  }
 }
 
 ::-webkit-input-placeholder {
