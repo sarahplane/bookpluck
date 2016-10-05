@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :notecards do
     get "download"
+    collection do
+      get :report
+    end
   end
 
   resources :books

@@ -10,11 +10,10 @@ class Notecard < ActiveRecord::Base
   has_many :themings
   has_many :themes, through: :themings
 
-  validates :title, presence: true, uniqueness: true, length: { maximum: 50, too_long: "50 characters is the max allowed"}
+  validates :title, presence: true, uniqueness: true, length: { maximum: 50,
+    too_long: "50 characters is the max allowed"}
   validates :quote, presence: true, length: { maximum: 1500,
     too_long: "1500 characters is the maximum allowed"}
-
-  attr_accessor :data
 
   def theme_list
     themes.pluck(:name).join(", ")
@@ -30,6 +29,7 @@ class Notecard < ActiveRecord::Base
 
   def author_name(attribute)
     self.authors.pluck(attribute)
+    # TODO: this needs updating for multi-author support
   end
 
   def build_download_data(file_type)

@@ -54,10 +54,9 @@ class NotecardsController < ApplicationController
 
   def download
     @notecard = Notecard.find(params[:notecard_id])
-    filetitle = @notecard.title.downcase.tr(" ", "_")
-    # TODO: add max characters for notecard title
+    file_title = @notecard.title.downcase.tr(" ", "_")
     file_type = params[:file_type]
-    send_data( @notecard.build_download_data(file_type), :filename => "#{filetitle}.#{file_type.to_s}" )
+    send_data( @notecard.build_download_data(file_type), :filename => "#{file_title}.#{file_type.to_s}" )
   end
 
 private

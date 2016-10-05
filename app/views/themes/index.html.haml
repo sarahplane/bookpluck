@@ -13,7 +13,7 @@
         - @theme_array = organize_themes(@themes, letter)
         - if @theme_array.any?
           .row.row-border-bottom
-            .col-md-1.col-md-offset-1.padding-bottom.margin-top
+            .col-md-1.padding-bottom.margin-top
               .letter-heading
                 = letter.capitalize
             .col-md-8.padding-bottom.margin-top
@@ -24,7 +24,7 @@
         - @theme_array = organize_themes(@themes, number.to_s)
         - if @theme_array.any?
           .row.row-border-bottom
-            .col-md-1.col-md-offset-1.padding-bottom.margin-top
+            .col-md-1.padding-bottom.margin-top
               .letter-heading
                 = number
             .col-md-8.padding-bottom.margin-top
