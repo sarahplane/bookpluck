@@ -20,6 +20,9 @@
               - @theme_array.each do |theme|
                 .btn.btn-theme
                   = link_to theme.name, theme_path(theme)
+                  %span.badge.margin-left= "#{theme.notecards.count}"
+          -#        = link_to theme, method: :delete, data: {confirm: 'Are you sure?'} do
+                    %i.glyphicon.glyphicon-remove
       - (0..9).each do |number|
         - @theme_array = organize_themes(@themes, number.to_s)
         - if @theme_array.any?
@@ -31,3 +34,6 @@
               - @theme_array.each do |theme|
                 .btn.btn-theme
                   = link_to theme.name, theme_path(theme)
+                  %span.badge.margin-left= "#{theme.notecards.count}"
+              -#    = link_to theme, method: :delete, data: {confirm: 'Are you sure?'} do
+                    %i.glyphicon.glyphicon-remove

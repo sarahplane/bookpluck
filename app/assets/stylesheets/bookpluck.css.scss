@@ -44,7 +44,6 @@ html, body {
 
 .btn {
   margin-top: 1em;
-  text-transform: uppercase;
 
   a {
     text-decoration: none;
@@ -71,6 +70,7 @@ html, body {
     padding: .5em 1em;
     color: black;
     margin: .5em;
+    text-transform: capitalize;
 
     a {
       color: $text-color-primary;

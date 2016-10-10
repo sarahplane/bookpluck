@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :books
-  resources :themes, only:[:index, :show]
+  resources :themes, only:[:index, :show, :destroy]
 
   root 'pages#home'
 end
