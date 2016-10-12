@@ -58,7 +58,7 @@ class NotecardsController < ApplicationController
     file_type = params[:file_type]
     send_data( @notecard.build_download_data(file_type), :filename => "#{file_title}.#{file_type.to_s}" )
   end
-
+  test change
 private
 
   def notecard_params
