@@ -5,6 +5,9 @@ class MyClippingsParser
 
     count = 1
 
+    clippings.pop if clippings[-1].strip.empty?
+    # Kindle files have an extra line added at bottom
+
     clippings.each do |clipping|
 
       title_author_type_location = clipping.split("| Added on ")[0]
@@ -20,12 +23,29 @@ class MyClippingsParser
       author_names_matcher = title_author_type_location[/\(.*?\)/]
       title_type_location_array = title_author_type_location.split("#{author_names_matcher}")
       title = title_type_location_array[0].strip
-      type_location_array = title_type_location_array[1].to_s.split(' Loc. ')
-      type = type_location_array[0].strip
+
+      type_location_array = title_type_location_array[1].to_s.split('Location')
+      type_string = type_location_array[0].strip
+
+      if type_string.include? "Highlight"
+        type = "highlight"
+      elsif type_string.include? "Note"
+        type = "note"
+      else
+        next
+        # handling for 'bookmark' type
+      end
+
       location = type_location_array[1].strip
 
-      book = Book.create(title: title)
-      Notecard.create(title: "#{text[0..12]}...", quote: text, book: book, user_id: user_id)
+      if type == "highlight"
+        book = Book.find_or_create_by(title: title)
+        Notecard.create(title: "#{text[0..12]}...", quote: text, book: book, user_id: user_id)
+        author = Author.find_or_create_by(first_name: "#{author_names.split(" ")[0]}", last_name: "#{author_names.split(" ")[1]}")
+        Notecard.last.authors << author
+      elsif type == "note"
+        Notecard.last.update(note: "#{text}")
+      end
 
       count += 1
     end
