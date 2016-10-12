@@ -6,6 +6,8 @@
           = link_to "New Notecard", new_notecard_path
         %li.active{:role => "presentation"}
           = link_to "Theme List", themes_path
+        %li.active{:role => "presentation"}
+          = link_to "Upload", upload_notecards_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|

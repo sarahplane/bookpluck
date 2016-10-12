@@ -1,5 +1,5 @@
 class NotecardsController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create, :edit, :update]
+  before_action :set_user, only: [:index, :new, :create, :edit, :update, :upload]
   before_action :set_notecard, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -58,7 +58,17 @@ class NotecardsController < ApplicationController
     file_type = params[:file_type]
     send_data( @notecard.build_download_data(file_type), :filename => "#{file_title}.#{file_type.to_s}" )
   end
-  test change
+
+  def upload
+    uploaded_io = params[:my_clippings]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    file = File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'rb')
+    @contents = file.read
+    MyClippingsParser.parser(@contents, @user.id)
+  end
+
 private
 
   def notecard_params

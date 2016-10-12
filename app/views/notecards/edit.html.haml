@@ -11,5 +11,8 @@
           = link_to "txt", notecard_download_path(notecard_id: @notecard.id, file_type: "txt")
         %li.active{:role => "presentation"}
           = link_to "html", notecard_download_path(notecard_id: @notecard.id, file_type: "html")
+      = form_tag({action: :upload}, multipart: true) do
+        = file_field_tag 'my_clippings'
+        = submit_tag
     .col-md-8
       = render partial: 'form', locals: {notecard: @notecard}
