@@ -36,7 +36,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'devise', '~> 4.2'
 
 group :test do
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '>= 3.5'
   gem 'simplecov', '~> 0.12.0'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'

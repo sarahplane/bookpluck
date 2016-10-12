@@ -2,16 +2,13 @@ require 'rails_helper'
 
 RSpec.describe NotecardsController, type: :controller do
 
-  include Devise::Test::ControllerHelpers
+  let (:user) { User.create(email: "user@user.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.now)}
+  let (:book) { Book.create(title: 'Book')}
+  let (:book_attributes) { {book_attributes: {title: "a title"}} }
+  let (:notecard) { Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: book )}
 
   before(:each) do
-    @user = User.create(email: "user@user.com", password: "123456", password_confirmation: "123456")
-    @user.confirm
-    @user.save
-    sign_in @user
-
-    @book = Book.create(title: 'Book')
-    @notecard = Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: @book)
+    sign_in user
   end
 
   describe "GET #index" do
@@ -23,47 +20,51 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns @notecard.book" do
+    it "assigns notecard.book" do
       get :new
 
-      expect(@notecard.book).to eq(@book)
+      expect(notecard.book).to eq(book)
     end
   end
 
-  describe "POST #create" do
-    it "responds with a 200 status" do
-      post :create, notecard: {title: 'one', quote: 'one', note: 'one', book: @book}
+  context "POST #create" do
+    subject(:create_notecard)  { post :create, notecard: {title: 'one', quote: 'one', note: 'one'}.merge(book_attributes) }
 
-      expect(response.status).to eq(200)
+    before :each do
+      create_notecard
+    end
+
+    it "responds with a redirect" do
+
+      expect(response.status).to eq(302)
     end
 
     it "adds one article" do
-      post :create, notecard: {title: 'one', quote: 'one', note: 'one', book: @book}
 
-      expect(Notecard.count).to eq(1)
+      expect(Notecard.count).to eq 1
     end
   end
 
   describe "PUT #update" do
     it "updates the title" do
-      put :update, :id => @notecard.id, notecard: {title: 'two'}
-      @notecard.reload
+      put :update, :id => notecard.id, notecard: {title: 'two'}
+      notecard.reload
 
-      expect(@notecard.title).to eq('two')
+      expect(notecard.title).to eq('two')
     end
   end
 
   describe "DELETE #destory" do
     it "redirects to the index page" do
-      delete :destroy, id: @notecard.id
+      delete :destroy, id: notecard.id
 
       expect(response).to redirect_to notecards_path
     end
 
     it "removes the notecard" do
-      delete :destroy, id: @notecard.id
+      notecard
 
-      expect(Notecard.count).to eq(0)
+      expect{delete :destroy, id: notecard.id}.to change{Notecard.count}.by(-1)
     end
   end
 end
