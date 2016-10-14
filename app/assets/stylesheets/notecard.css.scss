@@ -84,6 +84,51 @@
     }
   }
 
+  &.panel-body-upload-alt {
+    border-top: solid 1px black;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    textarea {
+      border: none;
+      text-indent: 5px;
+      color: $upload-text-color;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    input {
+      background-color: $background-color-primary;
+      border: none;
+      text-indent: 5px;
+      margin-bottom: 5px;
+      color: $upload-text-color;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &.panel-body-upload {
+    background-color: $background-color-primary;
+    color: black;
+
+    input {
+      background-color: $background-color-primary;
+      border: none;
+      text-indent: 5px;
+      margin-bottom: 5px;
+      color: $upload-text-color;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
   .field_with_errors {
     .input-box, input, textarea {
       border: solid 1px $alert-danger;
@@ -110,22 +155,31 @@
     margin: 0;
     color: $theme-color;
   }
+
+  &.above {
+    border-top: none;
+    border-bottom: 1px solid black;
+  }
 }
 
 ::-webkit-input-placeholder {
   color: darkgray;
+  font-style: italic;
 }
 
 :-moz-placeholder { /* Firefox 18- */
    color: darkgray;
+   font-style: italic;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
    color: darkgray;
+   font-style: italic;
 }
 
 :-ms-input-placeholder {
    color: darkgray;
+   font-style: italic;
 }
 
 .panel-group .panel + .panel {

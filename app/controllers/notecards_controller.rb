@@ -64,9 +64,14 @@ class NotecardsController < ApplicationController
   end
 
   def upload
-    ids = MyClippingsParser.parser(params[:my_clippings].read, @user.id)
-    ids.reject!{|a| a.blank?}
-    render :template => "notecards/upload_approval", :locals => {:ids => ids}
+    if params[:my_clippings].present?
+      ids = MyClippingsParser.parser(params[:my_clippings].read, @user.id)
+      ids.reject!{|a| a.blank?}
+      render :template => "notecards/upload_approval", :locals => {:ids => ids}
+    else
+      flash[:alert] = "Must choose a file"
+      redirect_to uploader_notecards_path
+    end
   end
 
   def uploader

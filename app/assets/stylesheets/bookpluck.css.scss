@@ -30,6 +30,8 @@ html, body {
   }
 }
 
+
+
 .alert-success {
   background-color: #2E7D32;
 }
@@ -75,6 +77,26 @@ html, body {
     a {
       color: $text-color-primary;
     }
+  }
+}
+
+.btn-discard {
+  background: none;
+  color: white;
+  margin: 1em 1em;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+button {
+  &.btn-approve {
+    background: none;
+    color: black;
+    margin: 1em 0;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
   }
 }
 
