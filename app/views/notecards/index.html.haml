@@ -6,43 +6,48 @@
           = link_to "New Notecard", new_notecard_path
         %li.active{:role => "presentation"}
           = link_to "Theme List", themes_path
+        .text-center.margin-top
+          %strong
+            = "Upload"
         %li.active{:role => "presentation"}
-          = link_to "Upload", upload_notecards_path
+          = link_to "Kindle \'My Clippings\'", uploader_notecards_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|
-        #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-          .panel.panel-notecard
-            .panel-body.panel-body-notecard{:id => "heading#{notecard.id}", :role => "tab"}
-              %a.collapsed.panel-title-notecard{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
-                = notecard.title
-            .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
-              .panel-body.panel-body-notecard-main
-                %strong
-                  = "Quote:"
-                %p.margin-left
-                  = notecard.quote
-              .panel-body.panel-body-notecard.panel-body-border-top
-                %strong
-                  = "Book Title:"
-                = "#{'"'}#{notecard.book.title}#{'"'}"
-              .panel-body.panel-body-notecard
-                %strong
-                  = "Author Name:"
-                - notecard.authors.each do |author|
-                  = "#{author.first_name} #{author.last_name}"
-              .panel-body.panel-body-notecard-main
-                %strong
-                  = "Note:"
-                %p.margin-left
-                  = notecard.note
-              .panel-body.panel-body-notecard
-                %strong
-                  = "Themes:"
-                - notecard.themes.sort_by{|t| t.name}.each do |theme|
-                  = link_to "#{theme.name}", theme_path(theme)
-              .panel-body.panel-body-notecard
+        %div{id: "notecard-row-#{notecard.id}"}
+          #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+            .panel.panel-notecard
+              .panel-body.panel-body-notecard{:id => "heading#{notecard.id}", :role => "tab"}
+                %a.collapsed.panel-title-notecard{"aria-controls" => "collapse#{notecard.id}", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{notecard.id}", :role => "button"}
+                  %div
+                    = notecard.title
+              .notecard-options
                 = link_to edit_notecard_path(notecard.id), class: "btn btn-outline" do
                   %i.glyphicon.glyphicon-pencil
-                = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline" do
+                = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline", remote: true do
                   %i.glyphicon.glyphicon-remove
+              .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
+                .panel-body.panel-body-notecard-main
+                  %strong
+                    = "Quote:"
+                  %p.margin-left
+                    = notecard.quote
+                .panel-body.panel-body-notecard.panel-body-border-top
+                  %strong
+                    = "Book Title:"
+                  = "#{'"'}#{notecard.book.title}#{'"'}"
+                .panel-body.panel-body-notecard
+                  %strong
+                    = "Author Name:"
+                  - notecard.authors.each do |author|
+                    = "#{author.first_name} #{author.last_name}"
+                .panel-body.panel-body-notecard-main
+                  %strong
+                    = "Note:"
+                  %p.margin-left
+                    = notecard.note
+                .panel-body.panel-body-notecard
+                  %strong
+                    = "Themes:"
+                  - notecard.themes.sort_by{|t| t.name}.each do |theme|
+                    = link_to "#{theme.name}", theme_path(theme)

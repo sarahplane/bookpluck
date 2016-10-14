@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     collection do
       get :report
       post :upload
+      get :uploader
+      get :upload_approval
     end
   end
 

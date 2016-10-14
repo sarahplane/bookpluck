@@ -1,6 +1,6 @@
 class NotecardsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create, :edit, :update, :upload]
-  before_action :set_notecard, only: [:show, :edit, :update, :destroy]
+  before_action :set_notecard, only: [:show, :edit, :update, :destroy, :upload_approval]
 
   def index
     @notecards = Notecard.all
@@ -35,21 +35,25 @@ class NotecardsController < ApplicationController
     assign_author
 
     if @notecard.update(notecard_params)
-      flash[:notice] = "Notecard #{'"'}#{@notecard.title}#{'"'} Edited"
-      redirect_to notecards_path
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Notecard #{'"'}#{@notecard.title}#{'"'} Edited"
+          redirect_to notecards_path
+        end
+        format.js
+      end
     else
       render :edit
     end
   end
 
   def destroy
-    old_title = @notecard.title
-    if @notecard.destroy
-      flash[:notice] = "notecard #{old_title} deleted"
-    else
-      flash.now[:alert] = "notecard #{'"'}#{@notecard.title}#{'"'} NOT deleted, please try again"
+    @notecard.delete
+
+    respond_to do |format|
+      format.html
+      format.js
     end
-    redirect_to notecards_path
   end
 
   def download
@@ -60,13 +64,15 @@ class NotecardsController < ApplicationController
   end
 
   def upload
-    uploaded_io = params[:my_clippings]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-    file = File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'rb')
-    @contents = file.read
-    MyClippingsParser.parser(@contents, @user.id)
+    ids = MyClippingsParser.parser(params[:my_clippings].read, @user.id)
+    ids.reject!{|a| a.blank?}
+    render :template => "notecards/upload_approval", :locals => {:ids => ids}
+  end
+
+  def uploader
+  end
+
+  def upload_approval
   end
 
 private

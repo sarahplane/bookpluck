@@ -1,8 +1,11 @@
 class MyClippingsParser
   def self.parser(file_contents, user_id)
-    clippings = []
-    clippings = file_contents.split("==========")
 
+    a = file_contents.force_encoding("UTF-8")
+    clippings = []
+    clippings = a.split("==========")
+
+    @ids = []
     count = 1
 
     clippings.pop if clippings[-1].strip.empty?
@@ -40,14 +43,20 @@ class MyClippingsParser
 
       if type == "highlight"
         book = Book.find_or_create_by(title: title)
-        Notecard.create(title: "#{text[0..12]}...", quote: text, book: book, user_id: user_id)
+        notecard = Notecard.create(title: "#{text[0..12]}#{count}...", quote: text, book: book, user_id: user_id)
+        next if notecard.save == false
+        # handing for validation errors
+        
         author = Author.find_or_create_by(first_name: "#{author_names.split(" ")[0]}", last_name: "#{author_names.split(" ")[1]}")
-        Notecard.last.authors << author
+        notecard.authors << author
+        @ids << notecard.id
       elsif type == "note"
         Notecard.last.update(note: "#{text}")
       end
 
       count += 1
     end
+
+    return @ids
   end
 end
