@@ -1,8 +1,12 @@
 .container-fluid.container-fluid-main
   .row
     .col-md-10.col-md-offset-1.text-center
-      .panel.panel-log.main-text
-        .panel-body.margin-bottom
-          = form_tag({action: :upload}, multipart: true) do
-            = file_field_tag 'my_clippings'
-            = submit_tag
+      .panel.panel-upload.main-text
+        %h2.margin-bottom Upload "My Clippings" File
+        .panel-body.margin-bottom.margin-top
+          = form_tag({ action: :upload}, multipart: true, onchange: "this.form.submit()") do
+            %span.btn.btn-theme.fileinput-button
+              %span Select file
+              = file_field_tag 'my_clippings'
+            .margin-top
+              = submit_tag("submit", class: "btn btn-theme")

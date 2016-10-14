@@ -65,7 +65,7 @@ class NotecardsController < ApplicationController
 
   def upload
     if params[:my_clippings].present?
-      ids = MyClippingsParser.parser(params[:my_clippings].read, @user.id)
+      ids = MyClippingsToNotecards.parser(params[:my_clippings].read, @user.id)
       ids.reject!{|a| a.blank?}
       render :template => "notecards/upload_approval", :locals => {:ids => ids}
     else
