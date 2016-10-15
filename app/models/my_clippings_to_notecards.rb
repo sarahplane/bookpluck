@@ -25,8 +25,7 @@ class MyClippingsToNotecards
       location = type_location_array[1].strip
 
       if type_string.include? "Highlight"
-        book = Book.find_or_create_by(title: title)
-        notecard = Notecard.create(title: "#{text[0..12]}#{count}...", quote: text, book: book, user_id: user_id)
+        notecard = Notecard.create(title: "#{text[0..12]}#{count}...", quote: text, book: Book.find_or_create_by(title: title), user_id: user_id)
         next if notecard.save == false
         author = Author.find_or_create_by(first_name: "#{author_names.split(" ")[0]}", last_name: "#{author_names.split(" ")[1]}")
         notecard.authors << author

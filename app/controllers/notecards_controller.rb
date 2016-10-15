@@ -48,6 +48,8 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
+    @notecard.book.delete if @notecard.book.notecards.count == 1
+
     @notecard.delete
 
     respond_to do |format|
@@ -78,6 +80,11 @@ class NotecardsController < ApplicationController
   end
 
   def upload_approval
+  end
+
+  def report
+    @books = Book.has_notecards_by_count
+    @themes = Theme.alphabetized
   end
 
 private
