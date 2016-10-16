@@ -55,16 +55,16 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   describe "DELETE #destory" do
-    it "redirects to the index page" do
-      delete :destroy, id: notecard.id
+    it "will be successful" do
+      delete :destroy, id: notecard.id, format: 'js'
 
-      expect(response).to redirect_to notecards_path
+      expect(response.status).to eq 200
     end
 
     it "removes the notecard" do
       notecard
 
-      expect{delete :destroy, id: notecard.id}.to change{Notecard.count}.by(-1)
+      expect{delete :destroy, id: notecard.id, format: 'js'}.to change{Notecard.count}.by(-1)
     end
   end
 end
