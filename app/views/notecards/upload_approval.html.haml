@@ -39,3 +39,11 @@
               .panel-body.panel-body-upload-alt
                 %strong Themes (separate by commas):
                 = f.text_field :theme_list, placeholder: "ex: one, two, three"
+      .panel.panel-notecard
+        .panel-body.text-center
+          %h3 There are no more notecards to approve!
+          %p If you're seeing this message and no cards listed above it, then the file may have been a duplicate
+          %p
+            = "Click"
+            = link_to 'here', notecards_path
+            = "to go back to the homepage!"
