@@ -1,3 +1,5 @@
+- blank_placeholder = "_"*30
+
 - if @notecard.errors.any?
   .alert.alert-danger.alert-dismissible{:role => "alert"}
     %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
@@ -28,10 +30,10 @@
         = "Author"
       .margin-left
         = "First name:"
-        = text_field_tag :author_first_name, @notecard.author_name(:first_name), placeholder: "____________________"
+        = text_field_tag :author_first_name, @notecard.author_name(:first_name), placeholder: blank_placeholder
       .margin-left
         = "Last name:"
-        = text_field_tag :author_last_name, @notecard.author_name(:last_name), placeholder: "____________________"
+        = text_field_tag :author_last_name, @notecard.author_name(:last_name), placeholder: blank_placeholder
       .margin-left
 
     .panel-body.panel-body-input-alt

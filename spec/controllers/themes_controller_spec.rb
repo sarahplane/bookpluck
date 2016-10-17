@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ThemesController, type: :controller do
 
-  include Devise::Test::ControllerHelpers
-
   before(:each) do
     @user = User.create(email: "user@user.com", password: "123456", password_confirmation: "123456")
     @user.confirm
