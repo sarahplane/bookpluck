@@ -4,13 +4,6 @@
       %ul.nav.nav-pills.nav-stacked.margin-left
         %li.active{:role => "presentation"}
           = link_to "New Notecard", new_notecard_path
-        %li.active{:role => "presentation"}
-          = link_to "Theme List", themes_path
-        .text-center.margin-top
-          %strong
-            = "Upload"
-        %li.active{:role => "presentation"}
-          = link_to "Kindle \'My Clippings\'", uploader_notecards_path
 
     .col-md-8.padding-bottom
       - @user.notecards.each do |notecard|

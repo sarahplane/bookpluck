@@ -18,7 +18,6 @@
 }
 
 .navbar-default .navbar-nav > li > a,
-.navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus,
 .navbar-default .navbar-nav > li > a:visited,
 .navbar-default .navbar-nav > li > a:active,
@@ -30,6 +29,11 @@
     color: $text-color-secondary;
     background-color: $theme-color;
     padding-top: 2em;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: #414958;
+  color: white;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -57,19 +61,23 @@
     margin-bottom: 5px;
     text-align: center;
 
-    a, a:hover, a:focus, a:visited {
+    a,a:focus, a:visited {
       background-color: $background-color-primary;
       color: black;
     }
   }
 
   li.active {
-    a, a:hover, a:focus, a:visited {
+    a, a:focus, a:visited {
       margin-bottom: 5px;
       background-color: $theme-color;
       text-transform: uppercase;
       color: $text-color-secondary;
       border: solid 1px black;
+    }
+
+    a:hover {
+      background-color: #414958;
     }
   }
 }
