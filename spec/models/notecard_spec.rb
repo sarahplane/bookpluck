@@ -23,7 +23,8 @@ RSpec.describe Notecard, type: :model do
     it "is not valid without a quote" do
       notecard.quote = nil
       notecard.valid?
-
+      # generates error
+      
       expect(notecard.errors[:quote]).to include("can't be blank")
     end
 
@@ -61,11 +62,11 @@ RSpec.describe Notecard, type: :model do
 
     let(:book) { Book.create(title: "Some Title")}
     let(:notecard) { Notecard.create(title: "Some Title", quote: "Some Quote", book: book)}
+    let(:author) { Author.create(first_name: "First", last_name: "Last") }
 
     it "returns the author's first name" do
-      @author = Author.create(first_name: "First", last_name: "Last")
       author_array = []
-      author_array << @author
+      author_array << author
       notecard.authors = author_array
 
       expect(notecard.author_name(:first_name)).to eq(["First"])
