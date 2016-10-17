@@ -37,14 +37,22 @@ class Notecard < ActiveRecord::Base
     case file_type
     when "txt"
       data = "TITLE:\r======\r#{self.title}\r\r"
-      data << "QUOTE:\r======\r#{self.quote}\r"
+      data << "QUOTE:\r======\r#{self.quote}\r\r"
       data << "BOOK:\r=====\r#{self.book.title}\r\r"
-      data << "NOTE:\r=====\r#{self.note}"
+      data << "NOTE:\r=====\r#{self.note}\r\r"
+      data << "AUTHOR:\r=======\r#{self.authors[0].first_name} #{self.authors[0].last_name}\r\r"
+      #TODO: Update this for multiple author support
+      data << "THEMES:\r=======\r#{self.themes.map{|theme| theme.name}.join(", ")}\r\r"
+      data << "CREATED:\r========\r#{self.created_at}\r"
     when "html"
-      data = "<strong>TITLE:</strong>\r<p>#{self.title}</p>\r\r"
-      data << "<strong>QUOTE:</strong>\r<p>#{self.quote}</p>\r"
-      data << "<strong>BOOK:</strong>\r<p>#{self.book.title}</p>\r\r"
-      data << "<strong>NOTE:</strong>\r<p>#{self.note}</p>"
+      data = "<strong>TITLE:</strong><p>#{self.title}</p>\r\r"
+      data << "<strong>QUOTE:</strong><p>#{self.quote}</p>\r"
+      data << "<strong>BOOK:</strong><p>#{self.book.title}</p>\r\r"
+      data << "<strong>NOTE:</strong><p>#{self.note}</p>\r\r"
+      data << "<strong>AUTHOR:</strong><p>#{self.authors[0].first_name} #{self.authors[0].last_name}</p>\r\r"
+      #TODO: Update this for multiple author support
+      data << "<strong>THEMES:</strong><p>#{self.themes.map{|theme| theme.name}.join(", ")}</p>\r\r"
+      data << "<strong>CREATED:</strong><p>#{self.created_at}</p>"
     end
   end
 end
