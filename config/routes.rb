@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :pages do
-    collection do
-      get :home
-    end
-  end
+  get 'pages/home' => 'pages#home'
 
   devise_for :users
+
   resources :notecards do
-    get "download"
+    get :download
     collection do
       get :report
       post :upload
@@ -17,7 +14,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :books
   resources :themes, only:[:index, :show, :destroy]
 
   root 'pages#home'
