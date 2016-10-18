@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  has_many :notecards
+  has_many :notecards, dependent: :destroy
   has_many :authorings
   has_many :authors, through: :authorings
 

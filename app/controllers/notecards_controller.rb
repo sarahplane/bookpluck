@@ -48,8 +48,6 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
-    @notecard.book.delete if @notecard.book.notecards.count == 1
-
     @notecard.delete
 
     respond_to do |format|
