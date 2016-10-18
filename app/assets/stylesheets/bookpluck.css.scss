@@ -94,17 +94,35 @@ html, body {
 
   &.btn-theme {
     background-color: white;
-    border: 1px solid black;
-    border-radius: 2px;
+    border: 1px solid $theme-color;
+    border-radius: 2px 0px 0px 2px;
     padding: .5em 1em;
     color: black;
-    margin: .5em;
+    margin: .5em 0 .5em .5em;
     text-transform: capitalize;
 
     a {
       color: $text-color-primary;
     }
   }
+
+  &.btn-theme-delete {
+    background-color: white;
+    border: 1px solid $theme-color;
+    border-radius: 0px 2px 2px 0px;
+    padding: .5em 1em;
+    color: black;
+    margin: .5em .5em .5em -.5em;
+
+    a {
+      color: $text-color-primary
+    }
+  }
+
+  &.btn-theme-delete:hover {
+    background-color: #e6e6e6;
+  }
+
 }
 
 .btn-discard {

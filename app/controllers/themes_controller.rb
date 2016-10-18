@@ -11,11 +11,11 @@ class ThemesController < ApplicationController
 
   def destroy
     @theme = Theme.find(params[:id])
-    if @theme.destroy
-      flash[:notice] = "theme deleted"
-    else
-      flash.now[:alert] = "theme NOT deleted, please try again"
+    @theme.delete
+
+    respond_to do |format|
+      format.html
+      format.js
     end
-    redirect_to themes_path
   end
 end

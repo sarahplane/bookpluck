@@ -4,36 +4,33 @@
       .h1
         = "Themes"
   .row
-    .col-md-2
-      %ul.nav.nav-pills.nav-stacked.margin-left
-        %li.active{:role => "presentation"}
-          = link_to "Home", notecards_path
-    .col-md-8.col-md-offset-1
+    .col-md-8.col-md-offset-2
       - ("a".."z").each do |letter|
         - @theme_array = organize_themes(@themes, letter)
-        - if @theme_array.any?
-          .row.row-border-bottom
-            .col-md-1.padding-bottom.margin-top
-              .letter-heading
-                = letter.capitalize
-            .col-md-8.padding-bottom.margin-top
-              - @theme_array.each do |theme|
+        .row.row-border-bottom
+          .col-md-1.padding-bottom.margin-top
+            .letter-heading
+              = letter.capitalize
+          .col-md-8.padding-bottom.margin-top
+            - @theme_array.each do |theme|
+              %div{id: "theme-row-#{theme.id}"}
                 .btn.btn-theme
                   = link_to theme.name, theme_path(theme)
                   %span.badge.margin-left= "#{theme.notecards.count}"
-          -#        = link_to theme, method: :delete, data: {confirm: 'Are you sure?'} do
-                    %i.glyphicon.glyphicon-remove
+                %strong
+                  = link_to "x", theme, method: :delete, class: "btn btn-theme-delete", remote: true
+
       - (0..9).each do |number|
         - @theme_array = organize_themes(@themes, number.to_s)
-        - if @theme_array.any?
-          .row.row-border-bottom
-            .col-md-1.padding-bottom.margin-top
-              .letter-heading
-                = number
-            .col-md-8.padding-bottom.margin-top
-              - @theme_array.each do |theme|
+        .row.row-border-bottom
+          .col-md-1.padding-bottom.margin-top
+            .letter-heading
+              = number
+          .col-md-8.padding-bottom.margin-top
+            - @theme_array.each do |theme|
+              %div{id: "theme-row-#{theme.id}"}
                 .btn.btn-theme
                   = link_to theme.name, theme_path(theme)
                   %span.badge.margin-left= "#{theme.notecards.count}"
-              -#    = link_to theme, method: :delete, data: {confirm: 'Are you sure?'} do
-                    %i.glyphicon.glyphicon-remove
+                %strong
+                  = link_to "x", theme, method: :delete, class: "btn btn-theme-delete", remote: true
