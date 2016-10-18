@@ -6,7 +6,9 @@ RSpec.describe NotecardsController, type: :controller do
   let (:book) { Book.create(title: 'Book')}
   let (:book_attributes) { {book_attributes: {title: "a title"}} }
   let (:notecard) { Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: book )}
-  let(:author) { Author.create(first_name: "First", last_name: "Last") }
+  let (:author) { Author.create(first_name: "First", last_name: "Last") }
+  let (:theme_a) { Theme.create(name: 'alpha') }
+  let (:theme_z) { Theme.create(name: 'zed') }
 
   before(:each) do
     sign_in user
@@ -70,10 +72,16 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   describe "GET #download" do
-    it "sets the file_title" do
+    it "is successful with file type: txt" do
       notecard.authors << author
       get :download, notecard_id: notecard.id, file_type: "txt"
-      #expect(response).to eq('')
+
+      expect(response.status).to eq 200
+    end
+
+    it "is successful with file type: html" do
+      notecard.authors << author
+      get :download, notecard_id: notecard.id, file_type: "html"
 
       expect(response.status).to eq 200
     end
@@ -91,6 +99,14 @@ RSpec.describe NotecardsController, type: :controller do
       get :upload
 
       expect(response).to redirect_to(uploader_notecards_path)
+    end
+  end
+
+  describe "GET #report" do
+    it "will be successful" do
+      get :report
+
+      expect(response.status).to eq 200
     end
   end
 end
