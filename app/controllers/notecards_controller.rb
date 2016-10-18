@@ -2,6 +2,8 @@ class NotecardsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create, :edit, :update, :upload]
   before_action :set_notecard, only: [:show, :edit, :update, :destroy, :upload_approval]
 
+  include MyClippingsToNotecards
+
   def index
     @notecards = Notecard.all
   end
@@ -65,7 +67,7 @@ class NotecardsController < ApplicationController
 
   def upload
     if params[:my_clippings].present?
-      ids = MyClippingsToNotecards.parser(params[:my_clippings].read, @user.id)
+      ids = kindle_parser(params[:my_clippings].read, @user.id)
       ids.reject!{|a| a.blank?}
       render :template => "notecards/upload_approval", :locals => {:ids => ids}
     else
