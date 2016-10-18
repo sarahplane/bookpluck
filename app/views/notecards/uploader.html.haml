@@ -4,7 +4,7 @@
       .panel.panel-upload.main-text
         %h2.margin-bottom Upload "My Clippings" File
         .panel-body.margin-bottom.margin-top
-          = form_tag({ action: :upload}, multipart: true, onchange: "this.form.submit()") do
+          = form_tag({ action: :upload }, multipart: true, onchange: "this.form.submit()") do
             %span.btn.btn-theme.fileinput-button
               %span Select file
               = file_field_tag 'my_clippings'

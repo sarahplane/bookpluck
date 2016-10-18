@@ -6,6 +6,7 @@ RSpec.describe NotecardsController, type: :controller do
   let (:book) { Book.create(title: 'Book')}
   let (:book_attributes) { {book_attributes: {title: "a title"}} }
   let (:notecard) { Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: book )}
+  let(:author) { Author.create(first_name: "First", last_name: "Last") }
 
   before(:each) do
     sign_in user
@@ -54,7 +55,7 @@ RSpec.describe NotecardsController, type: :controller do
     end
   end
 
-  describe "DELETE #destory" do
+  describe "DELETE #destroy" do
     it "will be successful" do
       delete :destroy, id: notecard.id, format: 'js'
 
@@ -65,6 +66,31 @@ RSpec.describe NotecardsController, type: :controller do
       notecard
 
       expect{delete :destroy, id: notecard.id, format: 'js'}.to change{Notecard.count}.by(-1)
+    end
+  end
+
+  describe "GET #download" do
+    it "sets the file_title" do
+      notecard.authors << author
+      get :download, notecard_id: notecard.id, file_type: "txt"
+      #expect(response).to eq('')
+
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe "GET #upload" do
+
+    it "will redirect with an error without the my_clippings param" do
+      get :upload
+
+      expect(response.status).to eq 302
+    end
+
+    it "will redirect to uploader upon failure" do
+      get :upload
+
+      expect(response).to redirect_to(uploader_notecards_path)
     end
   end
 end
