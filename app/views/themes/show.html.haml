@@ -4,11 +4,7 @@
       .h1
         = "Notecards for theme: #{@theme.name}"
   .row
-    .col-md-2
-      %ul.nav.nav-pills.nav-stacked.margin-left
-        %li.active{:role => "presentation"}
-          = link_to "Home", notecards_path
-    .col-md-8.padding-bottom
+    .col-md-8.col-md-offset-2.padding-bottom
       - @theme.notecards.each do |notecard|
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           .panel.panel-notecard
