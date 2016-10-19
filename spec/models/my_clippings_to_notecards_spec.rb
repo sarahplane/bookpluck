@@ -7,9 +7,9 @@ RSpec.describe MyClippingsToNotecards, type: :module do
   let (:user) { User.create(email: "user@user.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.now)}
   let (:book) { Book.create(title: 'Book')}
 
-  describe "kindle_parser" do
+  context "kindle_parser" do
 
-    let (:file_content) { "Title (First Last)\r\n- Your Highlight on page 29 | Location 441-443 | Added on Monday, October 10, 2016 4:02:45 PM\r\n\r\nTest\r\n==========\r\n" }
+    subject (:file_content) { "Title (First Last)\r\n- Your Highlight on page 29 | Location 441-443 | Added on Monday, October 10, 2016 4:02:45 PM\r\n\r\nTest\r\n==========\r\n" }
 
     it "will create a notecard and return its id" do
 

@@ -23,8 +23,8 @@ RSpec.describe Notecard, type: :model do
     it "is not valid without a quote" do
       notecard.quote = nil
       notecard.valid?
-      # generates error
-      
+      # necessary to generate notecard.errors for test below
+
       expect(notecard.errors[:quote]).to include("can't be blank")
     end
 

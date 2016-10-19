@@ -92,12 +92,22 @@ html, body {
     border-radius: 2px;
   }
 
-  &.btn-theme {
+  &.btn-options {
     background-color: white;
+    border-radius: 0;
+  }
+
+  &.btn-options:hover {
+    background-color: #e6e6e6;
+    border-radius: 0;
+  }
+
+  &.btn-submit {
+    background-color: $theme-color;
     border: 1px solid $theme-color;
-    border-radius: 2px 0px 0px 2px;
+    border-radius: 4px;
     padding: .5em 1em;
-    color: black;
+    color: white;
     margin: .5em 0 .5em .5em;
     text-transform: capitalize;
 
@@ -106,16 +116,34 @@ html, body {
     }
   }
 
+  &.btn-theme {
+    background-color: white;
+    border: 1px solid $theme-color;
+    border-radius: 4px 0px 0px 4px;
+    padding: .5em 1em;
+    color: white;
+    margin: .5em 0 .5em .5em;
+    text-transform: capitalize;
+
+    a {
+      color: $text-color-primary;
+    }
+
+    .badge {
+      background-color: #414958;
+    }
+  }
+
   &.btn-theme-delete {
     background-color: white;
     border: 1px solid $theme-color;
-    border-radius: 0px 2px 2px 0px;
+    border-radius: 0px 4px 4px 0px;
     padding: .5em 1em;
     color: black;
     margin: .5em .5em .5em -.5em;
 
     a {
-      color: $text-color-primary
+      color: $text-color-primary;
     }
   }
 
@@ -144,6 +172,8 @@ button {
     padding: 5px;
   }
 }
+
+
 
 .text-danger {
   color: $alert-danger;

@@ -33,7 +33,7 @@ private
 
     text = second_section.split(/[\r\n\r\n]+/)[1]
 
-    book_title, type_location = first_section.split("(#{author_names})").map{ |t| t.strip }
+    book_title, type_location = first_section.split("(#{author_names})").compact.collect(&:strip)
 
     type, location = type_location.to_s.split('Location').compact.collect(&:strip)
 

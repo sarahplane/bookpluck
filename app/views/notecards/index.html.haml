@@ -15,9 +15,9 @@
                   %div
                     = notecard.title
               .notecard-options
-                = link_to edit_notecard_path(notecard.id), class: "btn btn-outline" do
+                = link_to edit_notecard_path(notecard.id), class: "btn btn-options" do
                   %i.glyphicon.glyphicon-pencil
-                = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline", remote: true do
+                = link_to notecard, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-options", remote: true do
                   %i.glyphicon.glyphicon-remove
               .panel-collapse.collapse{:id => "collapse#{notecard.id}", "aria-labelledby" => "heading#{notecard.id}", :role => "tabpanel"}
                 .panel-body.panel-body-notecard-main
@@ -43,4 +43,4 @@
                   %strong
                     = "Themes:"
                   - notecard.themes.sort_by{|t| t.name}.each do |theme|
-                    = link_to "#{theme.name}", theme_path(theme)
+                    = link_to "#{theme.name}", theme_path(theme), class: "theme-link"
