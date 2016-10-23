@@ -61,8 +61,19 @@ class NotecardsController < ApplicationController
   def download
     @notecard = Notecard.find(params[:notecard_id])
     file_title = @notecard.title.downcase.tr(" ", "_")
-    file_type = params[:file_type]
-    send_data( @notecard.build_download_data(file_type), :filename => "#{file_title}.#{file_type.to_s}" )
+    content = render_to_string :template => "notecards/download.html", type: 'text/html'
+
+    respond_to do |format|
+      format.html do
+        send_data(content, filename: 'file.html', type: 'text/html', disposition: 'attachment')
+        #render :template => "notecards/download", filename: 'file.html', type: 'text/html', disposition: 'attachment'
+      end
+      format.text do
+        response.headers['Content-Type'] = 'text/plain'
+        response.headers['Content-Disposition'] = "attachment; filename=#{file_title}.txt"
+        render :template => "notecards/download"
+      end
+    end
   end
 
   def upload

@@ -1,0 +1,26 @@
+<%= @notecard.title.upcase %>
+<%= "="*(@notecard.title.length) %>
+
+ Book: <%= @notecard.book.title %>
+<% if !@notecard.authors.empty? %> Author: <%= @notecard.authors[0].first_name %><%= @notecard.authors[0].last_name %><% end %>
+ Created: <%= @notecard.created_at %>
+
+
+QUOTE
+-----
+
+<%= @notecard.quote %>
+
+
+
+NOTE
+----
+
+<% if @notecard.note? %><%= @notecard.note %><% else %><none><% end %>
+
+
+
+TAGS
+----
+
+<%= @notecard.themes.map{|theme| theme.name}.join(", ") %>
