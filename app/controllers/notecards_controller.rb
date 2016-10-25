@@ -63,8 +63,11 @@ class NotecardsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        send_data(content, filename: 'file.html', type: 'text/html', disposition: 'attachment')
+        #send_data(content, filename: 'file.html', type: 'text/plain', disposition: 'attachment')
         #render :template => "notecards/download", filename: 'file.html', type: 'text/html', disposition: 'attachment'
+        response.headers['Content-Type'] = 'text/plain'
+        response.headers['Content-Disposition'] = "attachment; filename=#{file_title}.html"
+        render :template => "notecards/download"
       end
       format.text do
         response.headers['Content-Type'] = 'text/plain'
@@ -76,11 +79,8 @@ class NotecardsController < ApplicationController
 
   def upload
     if params[:my_clippings].present?
-      notecards = MyClippingsToNotecards.new
-      # rename: candidate
-      ids = notecards.kindle_parser(params[:my_clippings].read, @user.id)
-      ids.reject!{|a| a.blank?}
-      render :template => "notecards/upload_approval", :locals => {:ids => ids}
+      candidates = MyClippingsToCandidates.new.kindle_parser(params[:my_clippings].read, @user.id)
+      render :template => "notecards/upload_approval", :locals => {:candidates => candidates}
     else
       flash[:alert] = "Must choose a file"
       redirect_to uploader_notecards_path
