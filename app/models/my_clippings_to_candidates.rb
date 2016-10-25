@@ -21,7 +21,7 @@ class MyClippingsToCandidates
   end
 
   def parse_lines(clipping)
-    lines = clipping.lines.delete_if{ |clipping| clipping.strip.empty? }.collect(&:strip)
+    lines = clipping.lines.delete_if{ |line| line.strip.empty? }.collect(&:strip)
     parse_type(lines) if lines.length == 3
   end
 
@@ -31,7 +31,7 @@ class MyClippingsToCandidates
   end
 
   def parse_note(lines)
-    @candidates[-1].note = lines[2]
+    @candidates[-1].note = lines[2] if @candidates.length > 0
   end
 
   def parse_quote(lines)
@@ -42,7 +42,7 @@ class MyClippingsToCandidates
   def parse_author(lines)
     author_names = lines[0].reverse[/\).*?\(/].to_s.gsub(/[()]/, "").reverse
     if author_names.include? ","
-      @author[:first_name], @author[:last_name] = author_names.split(",").collect(&:strip)
+      @author[:last_name], @author[:first_name] = author_names.split(",").collect(&:strip)
     else
       @author[:first_name], @author[:last_name] = author_names.split(" ", 2).collect(&:strip)
     end
@@ -59,6 +59,8 @@ class MyClippingsToCandidates
   def candidate_initializer
     notecard = Notecard.new(@candidate)
     notecard.authors << Author.find_or_initialize_by(@author)
+    notecard.user_id = @user_id
+    p notecard
     @candidates << notecard
   end
 end

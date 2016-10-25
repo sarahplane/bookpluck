@@ -3,40 +3,41 @@
     .col-md-2
     .col-md-8
       - candidates.each do |candidate|
-        = form_for(candidate, remote: true) do |f|
-          .panel.panel-notecard
-            .notecard-options.above
-              = button_tag(type: "submit", class: "btn-approve", name: "commit", value: "conceal") do
-                %span.glyphicon.glyphicon-ok
-              = link_to "#" do
-                %i.glyphicon.glyphicon-remove
-            .panel-body.panel-body-upload
-              .panel-body-input-title
-                = f.text_field :title, placeholder: 'Title'
-            .panel-body.panel-body-upload-alt
-              = f.label "Quote"
-              = f.text_area :quote, placeholder: 'Quote'
-            = f.fields_for :book do |t|
+        %div{id: "candidate-row-#{candidates.index(candidate)}"}
+          = form_for(candidate, remote: true) do |f|
+            .panel.panel-notecard
+              .notecard-options.above
+                = button_tag(type: "submit", class: "btn-approve", name: "index", value: "#{candidates.index(candidate)}") do
+                  %span.glyphicon.glyphicon-ok
+                = link_to "#" do
+                  %i.glyphicon.glyphicon-remove
+              .panel-body.panel-body-upload
+                .panel-body-input-title
+                  = f.text_field :title, placeholder: 'Title'
               .panel-body.panel-body-upload-alt
-                = t.label "Book Title"
-                = t.text_field :title, placeholder: 'ex: I, Robot', class: 'textfield'
-            .panel-body.panel-body-upload
-              %strong
-                = "Author"
-              .margin-left
-                = "First name:"
-                = text_field_tag :author_first_name, candidate.authors[0].first_name, placeholder: "____________________"
-              .margin-left
-                = "Last name:"
-                = text_field_tag :author_last_name, candidate.authors[0].last_name, placeholder: "____________________"
-              .margin-left
+                = f.label "Quote"
+                = f.text_area :quote, placeholder: 'Quote'
+              = f.fields_for :book do |t|
+                .panel-body.panel-body-upload-alt
+                  = t.label "Book Title"
+                  = t.text_field :title, placeholder: 'ex: I, Robot', class: 'textfield'
+              .panel-body.panel-body-upload
+                %strong
+                  = "Author"
+                .margin-left
+                  = "First name:"
+                  = text_field_tag :author_first_name, candidate.authors[0].first_name, placeholder: "____________________"
+                .margin-left
+                  = "Last name:"
+                  = text_field_tag :author_last_name, candidate.authors[0].last_name, placeholder: "____________________"
+                .margin-left
 
-            .panel-body.panel-body-upload-alt
-              = f.label "Note"
-              = f.text_area :note, placeholder: 'Your thoughts on the quote go here! (optional)'
-            .panel-body.panel-body-upload-alt
-              %strong Themes (separate by commas):
-              = f.text_field :theme_list, placeholder: "ex: one, two, three"
+              .panel-body.panel-body-upload-alt
+                = f.label "Note"
+                = f.text_area :note, placeholder: 'Your thoughts on the quote go here! (optional)'
+              .panel-body.panel-body-upload-alt
+                %strong Themes (separate by commas):
+                = f.text_field :theme_list, placeholder: "ex: one, two, three"
       .panel.panel-notecard
         .panel-body.text-center
           %h3 There are no more notecards to approve!

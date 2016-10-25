@@ -18,13 +18,22 @@ class NotecardsController < ApplicationController
   def create
     @notecard = Notecard.new(notecard_params)
     assign_author
+    @index = params[:index]
 
-    if @notecard.save
-      flash[:notice] = "Notecard added"
-      redirect_to notecards_path
-      @user.notecards << @notecard
-    else
-      render :new
+    respond_to do |format|
+      format.html do
+        if @notecard.save
+          flash[:notice] = "Notecard added"
+          redirect_to notecards_path
+          @user.notecards << @notecard
+        else
+          render :new
+        end
+      end
+      format.js do
+        @notecard.save
+        @user.notecards << @notecard
+      end
     end
   end
 
