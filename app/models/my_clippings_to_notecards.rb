@@ -1,4 +1,4 @@
-module MyClippingsToNotecards
+class MyClippingsToNotecards
 
   def kindle_parser(file_content, user_id)
     @ids = []
