@@ -80,6 +80,18 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="flash">
+        <% if notice.present? %>
+          <%= render partial: "notecards/notice" %>
+        <% end %>
+        <% if alert.present? %>
+          <%= render partial: "notecards/alert" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <%= yield %>
 </body>
 </html>

@@ -31,10 +31,13 @@ class NotecardsController < ApplicationController
         end
       end
       format.js do
-        @notecard.save
-        @user.notecards << @notecard
-        #flash now
-        # head :ok with the flash
+        if @notecard.save
+          @user.notecards << @notecard
+          flash.now.notice = 'notecard created'
+        else
+          flash.now.alert = "Notecard not created: please make sure it has a title and quote before trying again"
+          render action: 'failure'
+        end
       end
     end
   end
