@@ -2,14 +2,14 @@
   .row
     .col-md-2
     .col-md-8
-      - candidates.each do |candidate|
-        %div{id: "candidate-row-#{candidates.index(candidate)}"}
+      - candidates.each_with_index do |candidate, index|
+        %div{id: "candidate-row-#{index}"}
           = form_for(candidate, remote: true) do |f|
             .panel.panel-notecard
               .notecard-options.above
-                = button_tag(type: "submit", class: "btn-approve", name: "index", value: "#{candidates.index(candidate)}") do
+                = button_tag(type: "submit", class: "btn-approve", name: "index", value: "#{index}") do
                   %span.glyphicon.glyphicon-ok
-                = link_to "#" do
+                %span{onClick: "dismissCandidate(#{index})"}
                   %i.glyphicon.glyphicon-remove
               .panel-body.panel-body-upload
                 .panel-body-input-title

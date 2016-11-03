@@ -1,6 +1,6 @@
 class NotecardsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create, :edit, :update, :upload]
-  before_action :set_notecard, only: [:show, :edit, :update, :destroy, :upload_approval]
+  before_action :set_notecard, only: [:show, :edit, :update, :destroy]
 
   def index
     @notecards = Notecard.all
@@ -33,6 +33,8 @@ class NotecardsController < ApplicationController
       format.js do
         @notecard.save
         @user.notecards << @notecard
+        #flash now
+        # head :ok with the flash
       end
     end
   end
@@ -89,7 +91,10 @@ class NotecardsController < ApplicationController
   def upload
     if params[:my_clippings].present?
       candidates = MyClippingsToCandidates.new.kindle_parser(params[:my_clippings].read, @user.id)
-      render :template => "notecards/upload_approval", :locals => {:candidates => candidates}
+Rails.logger.info candidates.inspect
+      render "notecards/upload_approval", :locals => {:candidates => candidates}
+
+      #render :template => "notecards/upload_approval", :locals => {:candidates => candidates}
     else
       flash[:alert] = "Must choose a file"
       redirect_to uploader_notecards_path
