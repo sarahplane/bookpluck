@@ -11,10 +11,10 @@ class Notecard < ActiveRecord::Base
   has_many :themes, through: :themings
 
   ## validations ##
-  validates :title, presence: true, uniqueness: true, length: { maximum: 50,
-    too_long: "50 characters is the max allowed"}
+  validates :title, presence: true, uniqueness: { scope: :user }, length: { maximum: 50,
+    too_long: "50 characters is the max allowed" }
   validates :quote, presence: true, length: { maximum: 1500,
-    too_long: "1500 characters is the maximum allowed"}
+    too_long: "1500 characters is the maximum allowed" }
 
   ## methods ##
 
