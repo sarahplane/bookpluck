@@ -248,7 +248,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
                   ENV['google_oauth_client_id2'],
                   ENV['google_oauth_client_secret2'],
-                  callback_url: "google_oauth_callback_url"
+                  callback_url: "google_oauth_callback_url2"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
