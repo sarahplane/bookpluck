@@ -66,7 +66,7 @@
     </nav>
   <% end %>
   <div class="row">
-    <div class="col-md-12 text-center">
+    <div id="flash", class="col-md-12 text-center">
       <% flash.each do |type, msg| %>
         <% if type == "notice" %>
           <div class="alert alert-success">
@@ -78,18 +78,6 @@
         <a href="#" class="close" data-dismiss="alert">&#215;</a>
         <%= msg %>
       <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <div id="flash">
-        <% if notice.present? %>
-          <%= render partial: "notecards/notice" %>
-        <% end %>
-        <% if alert.present? %>
-          <%= render partial: "notecards/alert" %>
-        <% end %>
-      </div>
     </div>
   </div>
   <%= yield %>

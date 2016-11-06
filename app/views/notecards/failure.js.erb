@@ -1,1 +1,1 @@
-$("#flash").show(300).html('<%= j render partial: "notecards/alert" %>');
+$("#flash").show().html('<div class="alert alert-danger"><%= flash.now[:notice] = "Notecard not created: please make sure it has a title and quote before trying again" %><a href="#" class="close" data-dismiss="alert">&#215;</a></div>');
