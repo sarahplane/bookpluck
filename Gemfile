@@ -35,6 +35,8 @@ gem 'bootstrap-sass', '~> 3.3'
 
 gem 'devise', '~> 4.2'
 
+gem "figaro"
+
 group :test do
   gem 'rspec-rails', '>= 3.5'
   gem 'simplecov', '~> 0.12.0'
