@@ -37,6 +37,9 @@ gem 'devise', '~> 4.2'
 
 gem "figaro"
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 group :test do
   gem 'rspec-rails', '>= 3.5'
   gem 'simplecov', '~> 0.12.0'

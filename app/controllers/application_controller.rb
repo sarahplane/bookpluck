@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       # redirects to notecard index after sign-in
     end
   end
+
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_path
+  end
 end
