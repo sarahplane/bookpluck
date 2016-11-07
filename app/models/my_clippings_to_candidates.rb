@@ -18,6 +18,7 @@ private
     clippings = file_content.force_encoding("UTF-8").split("=" * 10).delete_if{ |c| c.strip.empty? }
 
     clippings.reverse.each do |clipping|
+    # Reverse ensures that notes pair with the correct highlights
       parse_lines(clipping)
     end
   end
