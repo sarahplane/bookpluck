@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MyClippingsToNotecards, type: :module do
-
-  include MyClippingsToNotecards
+RSpec.describe MyClippingsToCandidates, type: :model do
 
   let (:user) { User.create(email: "user@user.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.now)}
   let (:book) { Book.create(title: 'Book')}
