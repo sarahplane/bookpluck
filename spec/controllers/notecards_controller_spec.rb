@@ -15,10 +15,20 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   describe "GET #index" do
-    it "responds successfully" do
+    it "responds successfully when signed in" do
       get :index
 
       expect(response).to be_success
+    end
+
+    context "not signed in" do
+
+      it "will redirect to the sign in page" do
+        sign_out user
+        get :index
+
+        expect(response).to redirect_to(:user_session)
+      end
     end
   end
 
@@ -27,6 +37,16 @@ RSpec.describe NotecardsController, type: :controller do
       get :new
 
       expect(notecard.book).to eq(book)
+    end
+
+    context "not signed in" do
+
+      it "will redirect to the sign in page" do
+        sign_out user
+        get :index
+
+        expect(response.status).to eq(302)
+      end
     end
   end
 
@@ -38,13 +58,26 @@ RSpec.describe NotecardsController, type: :controller do
     end
 
     it "responds with a redirect" do
-
       expect(response.status).to eq(302)
     end
 
     it "adds one article" do
-
       expect(Notecard.count).to eq 1
+    end
+
+    context "failure" do
+      subject(:create_failure) { post :create, notecard: {title: nil, quote: 'one', note: 'one'} }
+
+      it "renders new on failure" do
+        expect(create_failure).to render_template(:new)
+      end
+    end
+
+    context "javascript format" do
+
+      it "adds one article" do
+        expect{ post :create, notecard: { title: 'test', quote: 'two', note: 'two' }.merge(book_attributes), format: 'js' }.to change{ Notecard.count }.by(+1)
+      end
     end
   end
 
@@ -67,7 +100,7 @@ RSpec.describe NotecardsController, type: :controller do
     it "removes the notecard" do
       notecard
 
-      expect{delete :destroy, id: notecard.id, format: 'js'}.to change{Notecard.count}.by(-1)
+      expect{ delete :destroy, id: notecard.id, format: 'js' }.to change{ Notecard.count }.by(-1)
     end
   end
 
