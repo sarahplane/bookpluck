@@ -1,1 +1,25 @@
-<p> test </p>
+<h1><%= @notecard.title.upcase %></h1>
+
+<h2>BOOK</h2>
+
+<p><strong> Title:</strong> <%= @notecard.book.title %></p>
+<% if !@notecard.authors.empty? %>
+  <p><strong> Author:</strong> <%= @notecard.authors[0].first_name %><%= @notecard.authors[0].last_name %></p>
+<% end %>
+<p><strong>Created:</strong> <%= @notecard.created_at %></p>
+
+<h2>QUOTE</h2>
+
+<p><%= @notecard.quote %></p>
+
+<h2>NOTE</h2>
+
+<% if @notecard.note? %>
+  <p><%= @notecard.note %></p>
+<% else %>
+  <em>none</em>
+<% end %>
+
+<h2>TAGS</h2>
+
+<p><%= @notecard.themes.map{|theme| theme.name}.join(", ") %></p>
