@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106160209) do
+ActiveRecord::Schema.define(version: 20161108234752) do
 
   create_table "authorings", force: :cascade do |t|
     t.integer  "author_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20161106160209) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "api_auth_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"

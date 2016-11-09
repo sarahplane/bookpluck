@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :notecards, only: [:index, :show]
+    end
+  end
+
   resources :themes, only:[:index, :show, :destroy]
 
   root 'pages#home'
