@@ -74,7 +74,7 @@ class NotecardsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        send_data(render_to_string :template => "notecards/download", filename: 'file.html', type: 'application/html', disposition: 'attachment', layout: false)
+        send_data(render_to_string :template => "notecards/download", filename: "#{file_title}.html", type: 'application/html', disposition: 'attachment', layout: false)
       end
       format.text do
         response.headers['Content-Type'] = 'text/plain'

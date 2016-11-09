@@ -8,14 +8,11 @@ RSpec.describe Api::V1::NotecardsController, type: :controller do
   let (:book) { Book.create(title: 'Book')}
   let (:book_attributes) { {book_attributes: {title: "a title"}} }
   let (:notecard) { Notecard.create(title: 'Notecard', quote: 'Quote', note: 'Note', book: book )}
-  let (:user2) { User.create(email: "user2@user.com",
-                            password: "123456",
-                            password_confirmation: "123456",
-                            confirmed_at: Time.now) }
 
   context "unauthenticated user" do
     it "can't get index" do
       get :index
+      
       expect(response).to have_http_status(401)
     end
   end
