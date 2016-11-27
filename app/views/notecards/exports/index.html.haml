@@ -1,0 +1,14 @@
+.container-fluid.container-fluid-main
+  .row
+    .col-md-10.col-md-offset-1.text-center
+      .panel.panel-export.main-text
+        .panel-body.margin-bottom
+          %h2 Export to Evernote
+        .panel-body
+          %div.explanation
+            BookPluck allows you to export all of your notes into an Evernote
+            friendy format. After clicking the export button below, a new file
+            will download to your computer. Simply open that file with your
+            Evernote desktop application, and all your notes will appear.
+        .panel-body
+          = button_to "Export", { action: "create", format: 'enex' }, class: 'btn btn-default'

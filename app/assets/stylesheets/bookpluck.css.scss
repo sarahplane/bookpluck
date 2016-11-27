@@ -10,6 +10,12 @@
   border-bottom: 1px solid darkgray;
 }
 
+.explanation {
+  max-width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 html, body {
   min-height: 100%;
   height: 100%;
@@ -210,6 +216,23 @@ button {
 
 .centered-text {
   text-align: center;
+}
+
+.panel-export {
+  width: auto;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 30px;
+
+  input, input:focus {
+    background-color: white;
+    border: 1px solid black;
+    outline: none;
+  }
+
+  h2 {
+    font-style: italic;
+  }
 }
 
 /* LAYOUT - ADDING MARGIN & PADDING ******************************************/
