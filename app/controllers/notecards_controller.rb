@@ -3,7 +3,7 @@ class NotecardsController < ApplicationController
   before_action :set_notecard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notecards = Notecard.all
+    @notecards = Notecard.includes(:book, :quotations, :authors, :themings, :themes)
   end
 
   def show
@@ -108,7 +108,7 @@ class NotecardsController < ApplicationController
 private
 
   def notecard_params
-    params.require(:notecard).permit(:title, :quote, :note, :theme_list,
+    params.require(:notecard).permit(:id, :title, :quote, :note, :theme_list,
                                      :author_names, book_attributes: [:title, :timestamp])
   end
 
@@ -121,14 +121,16 @@ private
   end
 
   def assign_author
-    author_array = []
-    authors = params[:author_names].split(',')
-    authors.each do |author|
-      # last_name, first_name = author.reverse.split(' ', 2).map{ |name| name.reverse }
-      first_name, last_name = author.rpartition(" ").collect(&:strip).reject!(&:empty?)
-      new_author = Author.find_or_create_by(first_name: first_name, last_name: last_name)
-      author_array << new_author
+    unless params[:author_names] == nil
+      author_array = []
+      authors = params[:author_names].split(',')
+      authors.each do |author|
+        # last_name, first_name = author.reverse.split(' ', 2).map{ |name| name.reverse }
+        first_name, last_name = author.rpartition(" ").collect(&:strip).reject!(&:empty?)
+        new_author = Author.find_or_create_by(first_name: first_name, last_name: last_name)
+        author_array << new_author
+      end
+      @notecard.authors = author_array
     end
-    @notecard.authors = author_array
   end
 end

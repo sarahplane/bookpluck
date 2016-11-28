@@ -6,7 +6,7 @@
           = link_to "New Notecard", new_notecard_path
 
     .col-md-8.padding-bottom
-      - @user.notecards.each do |notecard|
+      - @notecards.each do |notecard|
         %div{id: "notecard-row-#{notecard.id}"}
           #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
             .panel.panel-notecard
