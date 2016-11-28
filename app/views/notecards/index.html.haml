@@ -32,8 +32,7 @@
                 .panel-body.panel-body-notecard
                   %strong
                     = "Author Name:"
-                  - notecard.authors.each do |author|
-                    = "#{author.first_name} #{author.last_name}"
+                    = notecard.author_names
                 .panel-body.panel-body-notecard-main
                   %strong
                     = "Note:"

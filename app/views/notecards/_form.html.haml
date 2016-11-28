@@ -27,13 +27,11 @@
           = show_errors(@notecard.book, :title)
     .panel-body.panel-body-input
       %strong
-        = "Author"
+        = "Author(s)"
       .margin-left
-        = "First name:"
-        = text_field_tag :author_first_name, @notecard.author_name(:first_name), placeholder: blank_placeholder
-      .margin-left
-        = "Last name:"
-        = text_field_tag :author_last_name, @notecard.author_name(:last_name), placeholder: blank_placeholder
+        = text_field_tag :author_names, @notecard.author_names, placeholder: blank_placeholder
+      %em.margin-left
+        note: enter authors names separated by a comma (e.g. Herman Melville, Mark Twain)
       .margin-left
 
     .panel-body.panel-body-input-alt

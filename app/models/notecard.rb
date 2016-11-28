@@ -28,8 +28,7 @@ class Notecard < ActiveRecord::Base
     self.themes = new_or_found_themes
   end
 
-  def author_name(attribute)
-    self.authors.pluck(attribute)
-    # TODO: this needs updating for multi-author support
+  def author_names
+    authors.map{ |author| "#{author.first_name} #{author.last_name}" }.join(", ")
   end
 end
