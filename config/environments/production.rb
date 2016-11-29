@@ -14,12 +14,12 @@ Rails.application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :user_name => '686e275345f1cd',
-    :password => '26ceaa68df1e5b',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+    :password => ENV['MAILGUN_SMTP_PASSWORD'],
+    :address => ENV['MAILGUN_SMTP_SERVER'],
+    :domain => 'https://bookpluck.heroku.com',
+    :port => ENV['MAILGUN_SMTP_PORT'],
+    :authentication => :plain
   }
 
   # Code is not reloaded between requests.
