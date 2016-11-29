@@ -7,6 +7,7 @@ Rails.application.configure do
   require 'json'
 
   #response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=45330ca51ed5205c6c9972da19a4b0e0"
+  response = RestClient.get "https://api.mailgun.net/v3/appeec922fd1331450a8b3e5346abee1593.mailgun.org"
 
 
   first_inbox = JSON.parse(response)[0] # get first inbox
