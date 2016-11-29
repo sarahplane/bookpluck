@@ -6,7 +6,8 @@ Rails.application.configure do
   require 'rest_client'
   require 'json'
 
-  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=45330ca51ed5205c6c9972da19a4b0e0"
+  #response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=45330ca51ed5205c6c9972da19a4b0e0"
+
 
   first_inbox = JSON.parse(response)[0] # get first inbox
 
@@ -17,7 +18,7 @@ Rails.application.configure do
     :user_name => ENV['MAILGUN_SMTP_LOGIN'],
     :password => ENV['MAILGUN_SMTP_PASSWORD'],
     :address => ENV['MAILGUN_SMTP_SERVER'],
-    :domain => 'https://bookpluck.heroku.com',
+    :domain => 'bookpluck.heroku.com',
     :port => ENV['MAILGUN_SMTP_PORT'],
     :authentication => :plain
   }
