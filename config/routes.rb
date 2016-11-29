@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   get 'pages/home' => 'pages#home'
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'devise/registrations' }
 
   namespace :notecards do
     resources :exports, only: [:index, :create]
   end
-  
+
   resources :notecards do
     get :download
 

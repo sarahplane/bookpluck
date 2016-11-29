@@ -125,7 +125,6 @@ private
       author_array = []
       authors = params[:author_names].split(',')
       authors.each do |author|
-        # last_name, first_name = author.reverse.split(' ', 2).map{ |name| name.reverse }
         first_name, last_name = author.rpartition(" ").collect(&:strip).reject!(&:empty?)
         new_author = Author.find_or_create_by(first_name: first_name, last_name: last_name)
         author_array << new_author
