@@ -2,7 +2,7 @@ class Notecard < ActiveRecord::Base
 
   ## associations ##
   belongs_to :user, optional: true
-  belongs_to :book
+  belongs_to :book, optional: true
   accepts_nested_attributes_for :book
   has_many :quotations
   has_many :authors, through: :quotations
