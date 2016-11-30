@@ -13,7 +13,7 @@ class Api::V1::NotecardsController < Api::V1::BaseController
     @notecard = Notecard.new(notecard_params)
     if @notecard.save
       render json: {
-        status: 200,
+        status: 201,
         message: "Successfully created notecard",
       }.to_json
     else
@@ -21,10 +21,24 @@ class Api::V1::NotecardsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    notecard = Notecard.find(params[:id])
+    if notecard.delete
+      render json: {
+        status: 200,
+        message: "Successfully deleted notecard",
+      }.to_json
+    else
+      render json: {
+        status: 400,
+        message: "Something went wrong",
+      }.to_json
+    end
+  end
+
 private
 
   def notecard_params
-    params.require(:notecard).permit(:id, :title, :quote, :note, :theme_list,
-                                     :author_names, book_attributes: [:title, :timestamp])
+    params.require(:notecard).permit(:title, :quote, :note)
   end
 end
