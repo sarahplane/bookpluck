@@ -1,7 +1,7 @@
 class Api::V1::NotecardsController < Api::V1::BaseController
   def index
     notecards = Notecard.all
-    render json: notecards, status: 200   # this format can be important!
+    render json: notecards, status: 200 
   end
 
   def show
@@ -17,8 +17,16 @@ class Api::V1::NotecardsController < Api::V1::BaseController
         message: "Successfully created notecard",
       }.to_json
     else
-      render json: { error: "#{@notecard.errors.messages.map{ |key, value| key.to_s + ' ' + value.join(" and ") }.join(", ")}", status: 400}.to_json
+      render json: {
+        status: 400,
+        message: "Notecard could not be saved"
+        errors: "#{@notecard.errors.messages.map{ |key, value| key.to_s + ' ' + value.join(" and ") }.join(", ")}"
+      }.to_json
     end
+  end
+
+  def update
+
   end
 
   def destroy
