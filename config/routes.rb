@@ -7,11 +7,10 @@ Rails.application.routes.draw do
   namespace :notecards do
     resources :exports, only: [:index, :create]
     resources :uploads, only: [:index, :new, :create]
+    resources :downloads, only: [:create]
   end
 
   resources :notecards do
-    get :download
-
     collection do
       get :report
     end

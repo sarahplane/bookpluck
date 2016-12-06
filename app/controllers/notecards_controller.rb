@@ -21,17 +21,16 @@ class NotecardsController < ApplicationController
     @index = params[:index]
 
     respond_to do |format|
-      format.html do
-        if @notecard.save
+      if @notecard.save
+        format.html do
           flash[:notice] = "Notecard added"
           redirect_to notecards_path
           @user.notecards << @notecard
-        else
-          render :new
         end
-      end
-      format.js do
-        @notecard.save ? @user.notecards << @notecard : render(action: 'failure')
+        format.js { @user.notecards << @notecard }
+      else
+        format.html { render :new }
+        format.js { render(action: 'failure') }
       end
     end
   end
@@ -57,26 +56,6 @@ class NotecardsController < ApplicationController
 
   def destroy
     @notecard.delete
-  end
-
-  def download
-    @notecard = Notecard.find(params[:notecard_id])
-    file_title = @notecard.title.downcase.tr(" ", "_")
-
-    respond_to do |format|
-      format.html do
-        send_data(render_to_string template: "notecards/download",
-                  filename: "#{file_title}.html",
-                  type: 'application/html',
-                  disposition: 'attachment',
-                  layout: false)
-      end
-      format.text do
-        response.headers['Content-Type'] = 'text/plain'
-        response.headers['Content-Disposition'] = "attachment; filename=#{file_title}.txt"
-        render :template => "notecards/download"
-      end
-    end
   end
 
   def report
