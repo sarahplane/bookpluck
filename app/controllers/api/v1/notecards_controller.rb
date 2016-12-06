@@ -26,7 +26,19 @@ class Api::V1::NotecardsController < Api::V1::BaseController
   end
 
   def update
-
+    @notecard = Notecard.find(params[:id])
+    if @notecard.update(notecard_params)
+      render json: {
+        status: 200,
+        message: "Successfully updated notecard",
+      }.to_json
+    else
+      render json: {
+        status: 400,
+        message: "Notecard could not be updated",
+        errors: "#{@notecard.errors.messages.map{ |key, value| key.to_s + ' ' + value.join(" and ") }.join(", ")}"
+      }.to_json
+    end
   end
 
   def destroy
