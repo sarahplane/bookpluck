@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :notecards do
     resources :exports, only: [:index, :create]
+    resources :uploads, only: [:index, :new, :create]
   end
 
   resources :notecards do
@@ -13,9 +14,6 @@ Rails.application.routes.draw do
 
     collection do
       get :report
-      post :upload
-      get :uploader
-      get :upload_approval
     end
   end
 

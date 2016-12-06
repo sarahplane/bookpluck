@@ -28,7 +28,10 @@
                 .panel-body.panel-body-notecard.panel-body-border-top
                   %strong
                     = "Book Title:"
-                  = "#{'"'}#{notecard.book.title}#{'"'}"
+                  - if notecard.book.nil?
+                    = "none"
+                  - else
+                    = "#{'"'}#{notecard.book.title}#{'"'}"
                 .panel-body.panel-body-notecard
                   %strong
                     = "Author Name:"

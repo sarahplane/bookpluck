@@ -1,5 +1,5 @@
 class NotecardsController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create, :edit, :update, :upload]
+  before_action :set_user, only: [:index, :new, :create, :edit, :update]
   before_action :set_notecard, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -31,11 +31,7 @@ class NotecardsController < ApplicationController
         end
       end
       format.js do
-        if @notecard.save
-          @user.notecards << @notecard
-        else
-          render action: 'failure'
-        end
+        @notecard.save ? @user.notecards << @notecard : render(action: 'failure')
       end
     end
   end
@@ -61,11 +57,6 @@ class NotecardsController < ApplicationController
 
   def destroy
     @notecard.delete
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def download
@@ -74,7 +65,11 @@ class NotecardsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        send_data(render_to_string :template => "notecards/download", filename: "#{file_title}.html", type: 'application/html', disposition: 'attachment', layout: false)
+        send_data(render_to_string template: "notecards/download",
+                  filename: "#{file_title}.html",
+                  type: 'application/html',
+                  disposition: 'attachment',
+                  layout: false)
       end
       format.text do
         response.headers['Content-Type'] = 'text/plain'
@@ -82,22 +77,6 @@ class NotecardsController < ApplicationController
         render :template => "notecards/download"
       end
     end
-  end
-
-  def upload
-    if params[:my_clippings].present?
-      candidates = MyClippingsToCandidates.new.kindle_parser(params[:my_clippings].read, @user.id)
-      render "notecards/upload_approval", :locals => {:candidates => candidates}
-    else
-      flash[:alert] = "Must choose a file"
-      redirect_to uploader_notecards_path
-    end
-  end
-
-  def uploader
-  end
-
-  def upload_approval
   end
 
   def report
@@ -117,7 +96,7 @@ private
   end
 
   def set_notecard
-    @notecard = Notecard.find(params[:id])
+    @notecard = Notecard.includes(:book, :quotations, :authors).find(params[:id])
   end
 
   def assign_author
