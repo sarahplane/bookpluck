@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml'
 
 gem 'bootstrap-sass', '~> 3.3'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'devise', '~> 4.2'
 
