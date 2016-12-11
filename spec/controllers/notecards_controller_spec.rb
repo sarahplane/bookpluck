@@ -51,7 +51,7 @@ RSpec.describe NotecardsController, type: :controller do
   end
 
   context "POST #create" do
-    subject(:create_notecard)  { post :create, notecard: {title: 'one', quote: 'one', note: 'one'}.merge(book_attributes) }
+    subject(:create_notecard)  { post :create, notecard: {title: 'one', quote: 'one', note: 'one'}.merge(book_attributes), author_names: "Ray Bradbury" }
 
     before :each do
       create_notecard
@@ -61,8 +61,12 @@ RSpec.describe NotecardsController, type: :controller do
       expect(response.status).to eq(302)
     end
 
-    it "adds one article" do
+    it "adds one notecard" do
       expect(Notecard.count).to eq 1
+    end
+
+    it "assigns the author" do
+      expect(Notecard.last.authors[0].first_name).to eq("Ray")
     end
 
     context "failure" do
@@ -75,18 +79,25 @@ RSpec.describe NotecardsController, type: :controller do
 
     context "javascript format" do
 
-      it "adds one article" do
+      it "adds one notecard" do
         expect{ post :create, notecard: { title: 'test', quote: 'two', note: 'two' }.merge(book_attributes), format: 'js' }.to change{ Notecard.count }.by(+1)
       end
     end
   end
 
   describe "PUT #update" do
+
     it "updates the title" do
       put :update, :id => notecard.id, notecard: {title: 'two'}
       notecard.reload
 
       expect(notecard.title).to eq('two')
+    end
+
+    it "renders :edit on failure" do
+      update_failure = put :update, :id => notecard.id, notecard: {title: ''}
+
+      expect(update_failure).to render_template(:edit)
     end
   end
 
@@ -101,37 +112,6 @@ RSpec.describe NotecardsController, type: :controller do
       notecard
 
       expect{ delete :destroy, id: notecard.id, format: 'js' }.to change{ Notecard.count }.by(-1)
-    end
-  end
-
-  describe "GET #download" do
-    it "is successful with file type: txt" do
-      notecard.authors << author
-      get :download, notecard_id: notecard.id, file_type: "txt"
-
-      expect(response.status).to eq 200
-    end
-
-    it "is successful with file type: html" do
-      notecard.authors << author
-      get :download, notecard_id: notecard.id, file_type: "html"
-
-      expect(response.status).to eq 200
-    end
-  end
-
-  describe "GET #upload" do
-
-    it "will redirect with an error without the my_clippings param" do
-      get :upload
-
-      expect(response.status).to eq 302
-    end
-
-    it "will redirect to uploader upon failure" do
-      get :upload
-
-      expect(response).to redirect_to(uploader_notecards_path)
     end
   end
 

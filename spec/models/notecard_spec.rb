@@ -58,18 +58,18 @@ RSpec.describe Notecard, type: :model do
     end
   end
 
-  describe ".author_name" do
+  describe ".author_names" do
 
     let(:book) { Book.create(title: "Some Title")}
     let(:notecard) { Notecard.create(title: "Some Title", quote: "Some Quote", book: book)}
     let(:author) { Author.create(first_name: "First", last_name: "Last") }
 
-    it "returns the author's first name" do
+    it "returns the author names" do
       author_array = []
       author_array << author
       notecard.authors = author_array
 
-      expect(notecard.author_name(:first_name)).to eq(["First"])
+      expect(notecard.author_names).to eq("First Last")
     end
   end
 end

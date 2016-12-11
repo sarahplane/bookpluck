@@ -11,10 +11,14 @@ class Api::V1::NotecardsController < Api::V1::BaseController
 
   def create
     @notecard = Notecard.new(notecard_params)
-    @notecard.book =  Book.find_or_create_by(title: params[:book_attributes][:title])
+    if params[:book_attributes].present?
+      @notecard.book =  Book.find_or_create_by(title: params[:book_attributes][:title])
+    end
     @user = current_user
     assign_author
-    @notecard.theme_list=(params[:theme_list])
+    if params[:theme_list].present?
+      @notecard.theme_list=(params[:theme_list])
+    end
 
     if @notecard.save
       render json: {
