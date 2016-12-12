@@ -13,7 +13,9 @@
     <div><%= notecard.note %></div>
   <% end %>
   <div><hr/></div>
-  <div>"<%= notecard.book.title %>" by <%= notecard.authors[0].first_name %> <%= notecard.authors[0].last_name %></div>
+  <div><% if !notecard.book.nil? %>
+    <div>"<%= notecard.book.title %>" by <% if !notecard.authors.empty? %><%= notecard.authors[0].first_name %> <%= notecard.authors[0].last_name %><% end %></div>
+  <div><% end %>
   </en-note>
   ]]></content>
   <% if !notecard.themes.empty? %>
