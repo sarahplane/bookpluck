@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
 <% @notecards.each do |notecard| %>
-  <en-export>
+  <en-export export-date="20161212T212917Z" application="Evernote" version="Evernote Mac 6.9.2 (454158)">
   <note><title><%= notecard.title %></title><content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
   <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
   <en-note>
@@ -15,7 +15,7 @@
   <div><hr/></div>
   <div><% if !notecard.book.nil? %>
     <div>"<%= notecard.book.title %>" by <% if !notecard.authors.empty? %><%= notecard.authors[0].first_name %> <%= notecard.authors[0].last_name %><% end %></div>
-  <div><% end %>
+  </div><% end %>
   </en-note>
   ]]></content>
   <% if !notecard.themes.empty? %>
