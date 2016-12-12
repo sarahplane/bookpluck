@@ -114,12 +114,4 @@ RSpec.describe NotecardsController, type: :controller do
       expect{ delete :destroy, id: notecard.id, format: 'js' }.to change{ Notecard.count }.by(-1)
     end
   end
-
-  describe "GET #report" do
-    it "will be successful" do
-      get :report
-
-      expect(response).to have_http_status(:ok)
-    end
-  end
 end

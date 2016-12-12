@@ -10,11 +10,7 @@ Rails.application.routes.draw do
     resources :downloads, only: [:create]
   end
 
-  resources :notecards do
-    collection do
-      get :report
-    end
-  end
+  resources :notecards 
 
   namespace :api do
     namespace :v1 do

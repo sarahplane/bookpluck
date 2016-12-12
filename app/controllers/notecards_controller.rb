@@ -58,11 +58,6 @@ class NotecardsController < ApplicationController
     @notecard.delete
   end
 
-  def report
-    @books = Book.has_notecards_by_count
-    @themes = Theme.alphabetized
-  end
-
 private
 
   def notecard_params
