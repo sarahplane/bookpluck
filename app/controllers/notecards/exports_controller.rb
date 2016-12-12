@@ -10,7 +10,7 @@ class Notecards::ExportsController < ApplicationController
       format.enex do
         response.headers['Content-Type'] = 'text/plain'
         response.headers['Content-Disposition'] = "attachment; filename=notecards.enex"
-        render :template => "notecards/exports/export"
+        render template: "notecards/exports/export"
       end
     end
   end

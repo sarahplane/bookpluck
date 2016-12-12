@@ -1,7 +1,7 @@
 <%= @notecard.title.upcase %>
 <%= "="*(@notecard.title.length) %>
 
- Book: <%= @notecard.book.title %>
+ Book: <% if @notecard.book.present? %><%= @notecard.book.title %><% end %>
 <% if !@notecard.authors.empty? %> Author: <%= @notecard.authors[0].first_name %><%= @notecard.authors[0].last_name %><% end %>
  Created: <%= @notecard.created_at %>
 

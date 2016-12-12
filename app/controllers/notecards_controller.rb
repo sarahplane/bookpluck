@@ -66,8 +66,8 @@ class NotecardsController < ApplicationController
 private
 
   def notecard_params
-    params.require(:notecard).permit(:id, :title, :quote, :note, :theme_list,
-                                     :author_names, book_attributes: [:title, :timestamp])
+    params.require(:notecard).permit(:id, :title, :quote, :note, :theme_list, :author_names,
+                                     book_attributes: [:title, :timestamp])
   end
 
   def set_user

@@ -45,7 +45,7 @@ RSpec.describe NotecardsController, type: :controller do
         sign_out user
         get :index
 
-        expect(response.status).to eq(302)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -58,7 +58,7 @@ RSpec.describe NotecardsController, type: :controller do
     end
 
     it "responds with a redirect" do
-      expect(response.status).to eq(302)
+      expect(response).to have_http_status(:found)
     end
 
     it "adds one notecard" do
@@ -105,7 +105,7 @@ RSpec.describe NotecardsController, type: :controller do
     it "will be successful" do
       delete :destroy, id: notecard.id, format: 'js'
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
 
     it "removes the notecard" do
@@ -119,7 +119,7 @@ RSpec.describe NotecardsController, type: :controller do
     it "will be successful" do
       get :report
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
   end
 end

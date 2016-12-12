@@ -1,18 +1,18 @@
 class Api::V1::NotecardsController < Api::V1::BaseController
   def index
     notecards = Notecard.all
-    render json: notecards, status: 200
+    render json: notecards, status: :ok
   end
 
   def show
     notecard = Notecard.find(params[:id])
-    render json: notecard, status: 200
+    render json: notecard, status: :ok
   end
 
   def create
     @notecard = Notecard.new(notecard_params)
     if params[:book_attributes].present?
-      @notecard.book =  Book.find_or_create_by(title: params[:book_attributes][:title])
+      @notecard.book = Book.find_or_create_by(title: params[:book_attributes][:title])
     end
     @user = current_user
     assign_author
@@ -22,13 +22,13 @@ class Api::V1::NotecardsController < Api::V1::BaseController
 
     if @notecard.save
       render json: {
-        status: 201,
+        status: :created,
         message: "Successfully created notecard",
       }.to_json
       @user.notecards << @notecard
     else
       render json: {
-        status: 400,
+        status: :bad_request,
         message: "Notecard could not be saved",
         errors: "#{@notecard.errors.messages.map{ |key, value| key.to_s + ' ' + value.join(" and ") }.join(", ")}"
       }.to_json
@@ -45,12 +45,12 @@ class Api::V1::NotecardsController < Api::V1::BaseController
 
     if @notecard.update(notecard_params)
       render json: {
-        status: 200,
+        status: :ok,
         message: "Successfully updated notecard",
       }.to_json
     else
       render json: {
-        status: 400,
+        status: :bad_request,
         message: "Notecard could not be updated",
         errors: "#{@notecard.errors.messages.map{ |key, value| key.to_s + ' ' + value.join(" and ") }.join(", ")}"
       }.to_json
@@ -61,12 +61,12 @@ class Api::V1::NotecardsController < Api::V1::BaseController
     notecard = Notecard.find(params[:id])
     if notecard.delete
       render json: {
-        status: 200,
+        status: :ok,
         message: "Successfully deleted notecard",
       }.to_json
     else
       render json: {
-        status: 400,
+        status: :bad_request,
         message: "Something went wrong",
       }.to_json
     end

@@ -12,13 +12,13 @@ RSpec.describe Notecards::UploadsController, type: :controller do
       file = fixture_file_upload('files/my_clippings.txt', 'text/plain')
       post :create, my_clippings: file
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
 
     it "will redirect with an error without the my_clippings param" do
       post :create
 
-      expect(response.status).to eq 302
+      expect(response).to have_http_status(:found)
     end
 
     it "will redirect to uploader upon failure" do

@@ -2,7 +2,12 @@
 
 <h2>BOOK</h2>
 
-<p><strong> Title:</strong> <%= @notecard.book.title %></p>
+<% if @notecard.book.present? %>
+  <p><strong> Title:</strong> <%= @notecard.book.title %></p>
+<% else %>
+  <em>no title</em>
+<% end %>
+
 <% if !@notecard.authors.empty? %>
   <p><strong> Author:</strong> <%= @notecard.authors[0].first_name %><%= @notecard.authors[0].last_name %></p>
 <% end %>

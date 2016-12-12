@@ -13,13 +13,13 @@ RSpec.describe Notecards::DownloadsController, type: :controller do
     it "is successful with format: text" do
       post :create, notecard_id: notecard.id, format: "text"
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
 
     it "is successful with format: html" do
       post :create, notecard_id: notecard.id, format: "html"
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
   end
 end

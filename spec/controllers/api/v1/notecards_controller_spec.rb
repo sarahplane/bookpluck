@@ -13,7 +13,7 @@ RSpec.describe Api::V1::NotecardsController, type: :controller do
     it "can't get index" do
       get :index
 
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::NotecardsController, type: :controller do
         get :show, id: 1234
 
         expect(response.content_type).to eq 'application/json'
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:forbidden)
       end
     end
 
@@ -114,7 +114,7 @@ RSpec.describe Api::V1::NotecardsController, type: :controller do
       it "is successful" do
         delete :destroy, id: notecard.id, format: JSON
 
-        expect(response.status).to eq 200
+        expect(response).to have_http_status(:ok)
       end
     end
   end

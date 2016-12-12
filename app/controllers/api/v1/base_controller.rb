@@ -14,11 +14,11 @@ class Api::V1::BaseController < ApplicationController
 
   def authorize_user
     unless @current_user
-      render json: { error: "Not Authorized", status: 403}, status: 403
+      render json: { error: "Not Authorized", status: :forbidden }, status: :forbidden
     end
   end
 
   def record_not_found
-    render json: { error: "Record not found", status: 404}, status: 404 # :not_found
+    render json: { error: "Record not found", status: :forbidden }, status: :forbidden
   end
 end

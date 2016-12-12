@@ -12,7 +12,7 @@ RSpec.describe Notecards::ExportsController, type: :controller do
     it "is successful" do
       post :create, format: 'enex'
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
   end
 end
