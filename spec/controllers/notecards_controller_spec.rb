@@ -28,6 +28,7 @@ RSpec.describe NotecardsController, type: :controller do
         get :index
 
         expect(response).to redirect_to(:user_session)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -53,19 +54,19 @@ RSpec.describe NotecardsController, type: :controller do
   context "POST #create" do
     subject(:create_notecard)  { post :create, notecard: {title: 'one', quote: 'one', note: 'one'}.merge(book_attributes), author_names: "Ray Bradbury" }
 
-    before :each do
-      create_notecard
-    end
-
     it "responds with a redirect" do
+      create_notecard
+
       expect(response).to have_http_status(:found)
     end
 
     it "adds one notecard" do
-      expect(Notecard.count).to eq 1
+      expect{ create_notecard }.to change{ Notecard.count }.by(+1)
     end
 
     it "assigns the author" do
+      create_notecard
+
       expect(Notecard.last.authors[0].first_name).to eq("Ray")
     end
 
